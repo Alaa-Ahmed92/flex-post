@@ -1,0 +1,116 @@
+.userInfo {
+    border-radius: 6px;
+    background: #fff;
+    margin-bottom: 50px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.userInfo .userIntroActions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.userInfo .userIntroActions .userAuth {
+    display: flex;
+}
+
+.userInfo .userIntroActions .userAuth a,
+.userInfo .userIntroActions .userAuth button {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px dashed #163286;
+    color: #163286;
+}
+
+.userInfo .userIntroActions .userAuth a {
+    margin-right: 10px;
+}
+
+.userInfo .userIntroActions .userAuth button {
+    background-color: transparent;
+}
+
+.userInfo .userIntroActions h4 {
+    font-weight: 600;
+}
+
+.userInfo .userIntro .about {
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 0 20px;
+}
+
+.userInfo .userListInfo {
+    font-size: 16px;
+}
+
+.userInfo .userListInfo .userImg {}
+
+.userInfo .userListInfo .userImg img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.userInfo .userListInfo svg {
+    color: #333;
+    margin-right: 10px;
+}
+
+.userInfo .userListInfo div {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #163286;
+}
+
+.userInfo .userListInfo div span {
+    margin-right: 5px;
+    font-weight: 400;
+    color: #333;
+}
+
+.profileHeader {
+    border-radius: 6px;
+    background: #fff;
+    margin-bottom: 50px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.profileHeader .headImg {
+    margin-right: 20px;
+}
+
+.profileHeader .headImg img {
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profileHeader .headUserInfo h2 {
+    margin: 0;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.profileHeader .headUserInfo .about p {
+    margin: 0;
+    font-size: 17px;
+}
+
+.profileHeader .headUserInfo h2 span {
+    font-weight: 300;
+}
+
+/* .profileHeader .headImg {} */

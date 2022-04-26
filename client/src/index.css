@@ -1,0 +1,13 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
+body {
+  background-color: #e9ebed;
+  font-family: 'Open Sans', sans-serif;
+  height: 5000px;
+}
+
+.page {
+  margin-top: 100px;
+}

@@ -1,0 +1,78 @@
+\*\* Auth with JSON Web Tokens:
+
+    To restrict and protect access to user API endpoints according to the skeleton features,
+    the backend will need to incorporate authentication and authorization mechanisms.
+
+    There are a number of options when it comes to implementing user auth for web
+    applications. The most common and time-tested option is the use of sessions to store
+    user state on both the client and server-side. But a newer approach is the use of JSON
+    Web Token (JWT) as a stateless authentication mechanism that does not require
+    storing user state on the server side.
+
+    Both approaches have strengths for relevant real-world use cases. However, for the
+    purpose of keeping the code simple in this book, and because it pairs well with the
+    MERN stack and our example applications, we will use JWT for auth
+    implementation.
+
+\*\* How JWT works
+
+    Before diving into the implementation of authentication with JWT in the MERN stack,
+    we will look at how this mechanism generally works across a client-server
+    application, as outlined in the following diagram:
+    Initially, when a user signs in using their credentials, the server-side generates a JWT
+    signed with a secret key and a unique user detail. Then, this token is returned to the
+    requesting client to be saved locally either in localStorage, sessionStorage or a
+    cookie in the browser, essentially handing over the responsibility for maintaining
+    user state to the client-side.
+
+    For HTTP requests that are made following a successful sign-in, especially requests
+    for API endpoints that are protected and have restricted access, the client-side has to
+    attach this token to the request. More specifically, the JSON Web Token must be
+    included in the request Authorization header as a Bearer:
+
+        Authorization: Bearer <JSON Web Token>
+
+    When the server receives a request for a protected API endpoint, it checks the
+    Authorization header of the request for a valid JWT, then verifies the signature to
+    identify the sender and ensures the request data was not corrupted. If the token is
+    valid, the requesting client is given access to the associated operation or resource;
+    otherwise, an authorization error is returned.
+
+    In the skeleton application, when a user signs in with their email and password, the
+    backend will generate a signed JWT with the user's ID and with a secret key that's
+    available only on the server. This token will then be required for verification when a
+    user tries to view any user profiles, update their account details, or delete their user
+    account.
+
+    Implementing the user model to store and validate user data, then integrating it with
+    APIs to perform CRUD operations based on auth with JWT, will produce a
+    functioning standalone backend. In the rest of this chapter, we will look at how to
+    achieve this in the MERN stack and setup.
+
+=========
+
+body-parser:
+Request body-parsing middleware to handle the complexities of parsing streamable request objects so that we can simplify browser-server communication by exchanging JSON in the request body.
+To install the module, run yarn add body-parser from the command
+line. Then, configure the Express app with bodyParser.json() and bodyParser.urlencoded({ extended: true }).
+
+cookie-parser:
+Cookie parsing middleware to parse and set cookies in request objects.
+To install the cookie-parser module, run yarn add
+cookie-parser from the command line.
+
+compression:
+Compression middleware that will attempt to compress response bodies for all requests that traverse through the middleware.
+To install the compression module, run yarn add compression from the
+command line.
+
+helmet:
+Collection of middleware functions to help secure Express apps by setting various HTTP headers. To install the helmet module, run yarn
+add helmet from the command line.
+
+cors:
+Middleware to enable cross-origin resource sharing (CORS).
+To install the cors module, run yarn add cors from the command line.
+
+lodash:
+module to extend and merge the changes that came in the request body to update the user data.

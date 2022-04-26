@@ -1,0 +1,7 @@
+.form-floating textarea {
+    min-height: 200px;
+}
+
+.form-floating [type="file"] {
+    padding: 20px !important;
+}
