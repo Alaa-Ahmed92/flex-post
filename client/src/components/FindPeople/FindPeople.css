@@ -1,0 +1,71 @@
+.findPeople {
+    position: relative;
+}
+
+.findPeople .boxTitle {
+    margin-bottom: 50px;
+}
+
+.findPeople .boxTitle h4 {
+    font-weight: 600;
+    background: #163286;
+    color: #fff;
+    border-radius: 0 50px 50px 0;
+    padding: 4px 20px;
+    position: absolute;
+    left: -5px;
+    font-size: 17px;
+}
+
+.findPeople .userCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.findPeople .userCard .userCardInfo {
+    display: flex;
+    align-items: center;
+}
+
+.findPeople .userCard .userCardInfo img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.findPeople .userCard .userCardInfo h5 {
+    font-size: 15px;
+    margin: 0;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+.findPeople .userCard .userCardActions {
+    display: flex;
+}
+
+.findPeople .userCard .userCardActions a,
+.findPeople .userCard .userCardActions button {
+    background: transparent;
+    border-style: dashed;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 1px;
+    border-color: #163286;
+    color: #163286;
+}
+
+.findPeople .userCard .userCardActions a {}
+
+.findPeople .userCard .userCardActions a svg {
+    width: 20px;
+}
+
+.findPeople .userCard .userCardActions button {
+    margin-left: 10px;
+}

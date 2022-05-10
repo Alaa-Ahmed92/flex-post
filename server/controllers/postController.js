@@ -23,7 +23,7 @@ exports.postById = async (req, res, next, id) => {
 
 exports.getPosts = async (req, res) => {
     await Post.find({})
-        .select('_id title body createdAt')
+        .select('_id photo body createdAt')
         .populate('postedBy', '_id name')
         .sort([['createdAt', -1]])
         .then(posts => {
@@ -55,6 +55,7 @@ exports.createPost = (req, res, next) => {
                     error: err
                 })
             }
+            console.log(result);
             res.json(result);
         });
     });
@@ -68,14 +69,14 @@ exports.deletePost = (req, res) => {
                 error: err
             })
         }
-        return res.status(200).json({ message: 'Post deleted successfully!' })
+        return res.status(200).json({ post, message: 'Post deleted successfully!' })
     });
 }
 
-exports.postsByUser = async (req, res) => {
-    await Post.find({ postedBy: req.profile._id })
+exports.postsByUser = (req, res) => {
+    Post.find({ postedBy: req.profile._id })
         .populate('postedBy', '_id name photo')
-        .sort('_createdAt')
+        .sort([['createdAt', -1]])
         .exec((err, posts) => {
             if (err) {
                 return res.status(400).json({
@@ -97,15 +98,34 @@ exports.isPoster = (req, res, next) => {
 };
 
 exports.updatePost = (req, res, next) => {
-    let post = req.post;
-    post = _.extend(post, req.body);
-    post.updatedAt = Date.now();
-    post.save((err) => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
         if (err) {
             return res.status(400).json({
-                error: 'You are not authorized to perform this action.'
+                error: 'Image could not be uploaded'
             })
-        }
-        return res.status(200).json({ post })
-    })
+        };
+        let post = req.post;
+        post = _.extend(post, fields);
+        post.updatedAt = Date.now();
+        if (files.photo) {
+            post.photo.data = fs.readFileSync(files.photo.filepath);
+            post.photo.contentType = files.photo.type
+        };
+
+        post.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                })
+            }
+            res.json(post);
+        });
+    });
+};
+
+exports.postPhoto = (req, res, next) => {
+    res.set("Content-Type", req.post.photo.contentType);
+    return res.send(req.post.photo.data);
 };

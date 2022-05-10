@@ -165,3 +165,16 @@ exports.removeFollower = (req, res) => {
             res.json(result);
         });
 };
+
+exports.findPeople = (req, res) => {
+    let following = req.profile.following;
+    following.push(req.profile._id);
+    User.find({ _id: { $nin: following } }, (err, result) => {
+        if (err) {
+            return res.status(400).json({
+                error: 'You are not authorized to perform this action.'
+            })
+        }
+        res.json(result);
+    }).select('name')
+};

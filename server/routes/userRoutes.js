@@ -10,11 +10,14 @@ const {
     addFollowing,
     addFollower,
     removeFollowing,
-    removeFollower
+    removeFollower,
+    findPeople
 } = require('../controllers/userController');
 const { requireSignin } = require('../controllers/authController');
 
 router.get('/users', requireSignin, getUsers);
+
+router.get('/users/findPeople/:userId', requireSignin, findPeople);
 
 router.param("userId", userById);
 

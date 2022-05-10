@@ -1,25 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PostPreview from './PostPreview';
+import CreatePost from './CreatePost';
 import { connect } from 'react-redux';
 import { getPostsSelector } from '../../selectors/postsSelector';
-import { getPosts } from '../../actions/postsActions';
+import { getPosts, deletePost } from '../../actions/postsActions';
+import { getUser } from '../../actions/profileActions';
 
 const Posts = (props) => {
-    const { posts, getPosts } = props;
+    const { posts, getPosts, deletePost } = props;
 
     useEffect(() => {
         getPosts();
-    }, [getPosts])
+    }, [getPosts]);
 
     return (
         <div className='posts-list'>
-            <div className='row'>
-                <div className='col-lg-6'>
-                    {posts && posts.map(post => (
-                        <PostPreview post={post} key={post._id} />
-                    ))}
-                </div>
-            </div>
+            <CreatePost />
+            {posts && posts.map(post => (
+                <PostPreview
+                    post={post}
+                    key={post._id}
+                    deletePost={deletePost}
+                />
+            ))}
         </div>
     );
 };
@@ -28,4 +31,4 @@ const mapStateToProps = (state) => ({
     posts: getPostsSelector(state)
 })
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getUser, getPosts, deletePost })(Posts);

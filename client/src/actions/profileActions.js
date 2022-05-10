@@ -23,9 +23,9 @@ export const getUser = (id, token) => {
                 }
             })
     }
-    function request() { return { type: userConstants.USER_REQUEST } };
-    function success(user) { return { type: userConstants.USER_SUCCESS, user } };
-    function failure(error) { return { type: userConstants.USER_FAILURE, error } };
+    function request() { return { type: userConstants.FETCH_USER_REQUEST } };
+    function success(user) { return { type: userConstants.FETCH_USER_SUCCESS, user } };
+    function failure(error) { return { type: userConstants.FETCH_USER_FAILURE, error } };
 };
 
 export const updateUser = (id, token, user) => {
@@ -71,6 +71,31 @@ export const deleteUser = (id, token) => {
     }
     function request() { return { type: userConstants.DELETE_USER } };
 }
+
+export const findPeople = (id, token) => {
+    return (dispatch) => {
+        dispatch(request());
+        fetch(`${process.env.REACT_APP_API_URL}/users/findPeople/${id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    dispatch(failure(data.error));
+                } else {
+                    dispatch(success(data));
+                }
+            })
+    }
+    function request() { return { type: userConstants.FIND_PEOPLE_REQUEST } };
+    function success(people) { return { type: userConstants.FIND_PEOPLE_SUCCESS, people } };
+    function failure(error) { return { type: userConstants.FIND_PEOPLE_FAILURE, error } };
+};
 
 // export const followUser = (id, token, followId) => {
 //     return (dispatch) => {
