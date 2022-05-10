@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
+    likes: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "user"
+    }],
     postedBy: {
         type: mongoose.Schema.ObjectId,
         ref: "user"

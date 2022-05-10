@@ -129,3 +129,19 @@ exports.postPhoto = (req, res, next) => {
     res.set("Content-Type", req.post.photo.contentType);
     return res.send(req.post.photo.data);
 };
+
+// Like Post
+exports.likePost = (req, res, next) => {
+    Post.findByIdAndUpdate(
+        req.body.postId,
+        { $push: { likes: req.body.userId } },
+        { new: true })
+        .exec((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: 'No access.'
+                })
+            }
+            res.json(result);
+        });
+};
