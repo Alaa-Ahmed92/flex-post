@@ -5,9 +5,10 @@
 body {
   background-color: #e9ebed;
   font-family: 'Open Sans', sans-serif;
-  height: 5000px;
+  /* height: 5000px; */
 }
 
 .page {
   margin-top: 100px;
+  padding-bottom: 50px;
 }

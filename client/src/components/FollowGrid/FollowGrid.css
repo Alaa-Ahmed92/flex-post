@@ -1,0 +1,23 @@
+.followUser {
+    margin-top: 35px;
+}
+
+
+.followUser .profileLink {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.followUser .profileLink img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.followUser .profileLink span {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-left: 10px;
+    font-weight: 500;
+}

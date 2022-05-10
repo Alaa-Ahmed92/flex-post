@@ -2,17 +2,17 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   border-radius: 6px;
   background: #fff;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .postBox .postHead {
-  padding: 30px 30px 45px;
+  padding: 20px 20px 35px;
 }
 
 .postBox .postOptions {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .postBox .postOptions .postInfo {
@@ -23,8 +23,8 @@
 .postBox .postOptions .postInfo .imgPlace {
   border-radius: 50%;
   overflow: hidden;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   margin-right: 10px;
 }
 
@@ -32,22 +32,26 @@
   display: flex;
   flex-direction: column;
 }
+
 .postBox .postOptions .postInfo .namePlace a {
   font-weight: 600;
   font-size: 16px;
+  color: #163286;
 }
+
 .postBox .postOptions .postInfo .namePlace .postTime {
   display: flex;
   align-items: center;
   color: #717f91;
   font-size: 14px;
 }
+
 .postBox .postOptions .postInfo .namePlace .postTime span {
   margin-left: 5px;
 }
 
-.postBox .postOptions .postActions {
-}
+.postBox .postOptions .postActions {}
+
 .postBox .postOptions .postActions button {
   width: 32px;
   height: 32px;
@@ -62,12 +66,22 @@
   box-shadow: none;
   color: #98a6ad;
 }
+
 .postBox .postOptions .postActions button:after {
   display: none;
 }
+
 .postBox .postBody p {
   margin: 0;
   font-size: 15px;
+  margin-bottom: 10px;
+  white-space: pre-line;
+  /* To handle new line */
+}
+
+.postBox .postBody img {
+  width: 100%;
+  border-radius: 6px;
 }
 
 /* .postBox .postOptions .postInfo .imgPlace img {
@@ -79,6 +93,7 @@
   justify-content: space-between;
   border-top: 1px solid rgba(113, 127, 145, 0.2);
 }
+
 .postBox .postFooter .actionBox {
   width: 100%;
   text-align: center;
@@ -89,6 +104,7 @@
   justify-content: center;
   position: relative;
 }
+
 .postBox .postFooter .actionBox button {
   width: 100%;
   height: 100%;
@@ -103,6 +119,7 @@
   font-weight: 600;
   font-size: 14px;
 }
+
 .postBox .postFooter .actionBox button:before {
   content: "";
   display: block;
@@ -112,6 +129,7 @@
   position: absolute;
   top: -17px;
 }
+
 .postBox .postFooter .actionBox:nth-child(1) button:before {
   width: 31%;
 }
@@ -123,6 +141,7 @@
 .postBox .postFooter .actionBox:nth-child(3) {
   border: none;
 }
+
 .postBox .postFooter .actionBox button h6 {
   position: absolute;
   top: -10px;
@@ -131,10 +150,160 @@
   font-weight: 600;
   color: #717f91;
 }
-.postBox .postFooter .actionBox button .countIcon {
-}
+
+.postBox .postFooter .actionBox button .countIcon {}
+
 .postBox .postFooter .actionBox button .countIcon .countNum {
   margin-left: 8px;
 }
-.postBox .postFooter {
+
+.postBox .postFooter {}
+
+.createPost {
+  padding-bottom: 35px !important;
+}
+
+.createPost form {
+  display: flex;
+}
+
+.createPost .imgPlace {}
+
+.createPost .imgPlace img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.createPost .postBody {
+  width: 100%;
+}
+
+.createPost .postBody textarea {
+  background: #f0f2f5;
+  border: none;
+  border-radius: 6px;
+  resize: none;
+  width: 100%;
+  padding: 10px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 200px;
+  outline: none;
+  transition: .3s ease-in-out;
+}
+
+/* .createPost .postBody textarea:focus {
+  height: 300px;
+  transition: .3s ease-in-out;
+} */
+
+.createPost button.addPost {
+  background: #163286;
+  color: #fff;
+  border: none;
+  position: absolute;
+  right: 21px;
+  bottom: -15px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  border: 4px solid #e9ebed;
+}
+
+.createPost button:disabled {
+  background: #808080;
+}
+
+.createPost .postBody textarea.bodyStyleClass {
+  height: 150px;
+  transition: .3s ease-in-out;
+}
+
+.createPost .custImg {
+  margin-top: 5px;
+}
+
+.createPost .custImg input#postImg {
+  display: none;
+}
+
+.createPost .custImg label {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  color: #45BD62;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: .3s ease-in-out;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.createPost .custImg label:hover {
+  background: #f0f2f5;
+  transition: .3s ease-in-out;
+}
+
+
+.createPost .custImg label svg {
+  width: 25px;
+  height: 25px;
+}
+
+.createPost .custImg label span {
+  color: #333;
+  margin-left: 10px;
+}
+
+.createPost .custImg .previewImg {
+  margin-top: 10px;
+  border: 2px solid #f0f2f5;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.createPost .custImg .previewImg img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.editPostModal textarea {
+  min-height: 150px;
+  margin-bottom: 20px;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.editPostModal img {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 6px;
+}
+
+.editPostModal .footerActions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.editPostModal .footerActions button {
+  margin-left: 15px;
+}
+
+.ant-btn {
+  width: 100px;
+  /* text-transform: uppercase;
+  font-weight: 600; */
+  border-radius: 50px;
+}
+
+.ant-btn.ant-btn-primary {
+  background: #163286;
+  border-color: #163286;
+}
+
+.ant-btn.ant-btn-default:hover {
+  color: #163286;
+  border-color: #163286;
 }

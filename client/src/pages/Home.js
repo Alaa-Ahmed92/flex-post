@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FindPeople from '../components/FindPeople/FindPeople';
 import Posts from '../components/Posts/Posts';
 
 class Home extends Component {
@@ -6,7 +7,17 @@ class Home extends Component {
         return (
             <div className='home-page page'>
                 <div className='container'>
-                    <Posts />
+                    <div className='row'>
+                        <div className='col-lg-3'>
+                            Test
+                        </div>
+                        <div className='col-lg-6'>
+                            <Posts />
+                        </div>
+                        <div className='col-lg-3'>
+                            <FindPeople />
+                        </div>
+                    </div>
                 </div>
             </div>
         )
