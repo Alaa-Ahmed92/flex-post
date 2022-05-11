@@ -139,3 +139,30 @@ export const updatePost = (postId, token, post) => {
     function success(post, updatedPosts) { return { type: postsConstants.UPDATE_POST_SUCCESS, post, updatedPosts } };
     function failure(error) { return { type: postsConstants.UPDATE_POST_FAILURE, error } };
 };
+
+
+// export const likePost = (userId, token, postId) => {
+//     return (dispatch) => {
+//         dispatch(request());
+//         fetch(`${process.env.REACT_APP_API_URL}/post/like`, {
+//             method: 'PUT',
+//             headers: {
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${token}`
+//             },
+//             body: JSON.stringify({ userId, postId })
+//         })
+//             .then(res => res.json())
+//             .then(data => {
+//                 if (data.error) {
+//                     dispatch(failure(data.error));
+//                 } else {
+//                     dispatch(success(data));
+//                 }
+//             })
+//     }
+//     function request() { return { type: postsConstants.LIKE_POST_REQUEST } };
+//     function success(post) { return { type: postsConstants.LIKE_POST_SUCCESS, post } };
+//     function failure(error) { return { type: postsConstants.LIKE_POST_FAILURE, error } };
+// };

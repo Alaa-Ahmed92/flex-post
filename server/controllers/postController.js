@@ -6,8 +6,8 @@ const _ = require('lodash'); // module to extend and merge the changes that came
 
 
 // method to fetch a specific post by its ID
-exports.postById = async (req, res, next, id) => {
-    await Post.findById(id)
+exports.postById = (req, res, next, id) => {
+    Post.findById(id)
         .populate('postedBy', '_id name photo')
         .exec((err, post) => {
             if (err || !post) {
@@ -131,11 +131,27 @@ exports.postPhoto = (req, res, next) => {
 };
 
 // Like Post
-exports.likePost = (req, res, next) => {
+exports.like = (req, res) => {
+    Post.findByIdAndUpdate(req.body.postId, { $push: { likes: req.body.userId } }, { new: true }).exec(
+        (err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            } else {
+                res.json(result);
+            }
+        }
+    );
+};
+
+// Unlike Post
+exports.unLikePost = (req, res, next) => {
     Post.findByIdAndUpdate(
         req.body.postId,
-        { $push: { likes: req.body.userId } },
+        { $pull: { likes: req.body.userId } },
         { new: true })
+        // .populate('likes', '_id name')
         .exec((err, result) => {
             if (err) {
                 return res.status(400).json({

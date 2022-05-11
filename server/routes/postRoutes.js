@@ -9,7 +9,8 @@ const {
     deletePost,
     updatePost,
     postPhoto,
-    likePost
+    like,
+    unLikePost
 } = require('../controllers/postController');
 const { requireSignin } = require('../controllers/authController');
 const { userById } = require('../controllers/userController');
@@ -39,7 +40,10 @@ router.param("postId", postById);
 // Post Photo
 router.get("/post/photo/:postId", postPhoto);
 
-// Like post
-router.put("/post/like", requireSignin, likePost);
+// Like Post
+router.put("/post/like", requireSignin, like);
+
+// Unlike Post
+// router.put("/post/unlike", requireSignin, unLikePost);
 
 module.exports = router;

@@ -82,6 +82,25 @@ export const postsReducer = (state = {}, action) => {
                 error: action.error
             }
         // Fetch User Posts
+        // case postsConstants.LIKE_POST_REQUEST:
+        //     return {
+        //         ...state,
+        //         loading: true
+        //     }
+        // case postsConstants.LIKE_POST_SUCCESS:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         post: action.post,
+        //         data: action.updatedPosts
+        //     }
+        // case postsConstants.LIKE_POST_FAILURE:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         error: action.error
+        //     }
+        // Fetch User Posts
         case postsConstants.FETCH_USER_POSTS_REQUEST:
             return {
                 ...state,

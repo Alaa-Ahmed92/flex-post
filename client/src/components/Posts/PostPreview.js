@@ -12,7 +12,9 @@ import { Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import defaultImg from '../../assets/images/profile-pic.png';
 import { isAuthenticated } from '../../helpers/auth-helper';
+import { connect } from 'react-redux';
 import EditPost from './EditPost';
+// import { likePost } from '../../actions/postsActions';
 
 const PostPreview = (props) => {
     const { post, deletePost } = props;
@@ -22,7 +24,7 @@ const PostPreview = (props) => {
     const [postReq, setPostReq] = useState('');
 
     useEffect(() => {
-        setPostReq({...post});
+        setPostReq({ ...postReq, post })
         const timer = setInterval(
             () => setTimestampString(formatter(post.createdAt)),
             60000
@@ -59,6 +61,32 @@ const PostPreview = (props) => {
         setDeleteModal(false);
     };
 
+    // Test Like Post
+    function likePost(userId, token, postId) {
+        console.log(userId);
+        console.log(token);
+        console.log(postId);
+        return fetch(`${process.env.REACT_APP_API_URL}/post/like`, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ userId, postId })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                } else {
+                    console.log(data);
+                    setPostReq({ ...postReq, post: data })
+                }
+            })
+    };
+    // End Like Post
+
     return (
         <div className='postBox'>
             <div className='postHead'>
@@ -88,7 +116,7 @@ const PostPreview = (props) => {
             </div>
             <div className='postFooter'>
                 <div className='actionBox'>
-                    <button>
+                    <button onClick={() => likePost(isAuthenticated().user._id, isAuthenticated().token, post._id)}>
                         <h6>Like</h6>
                         <div className='countIcon'>
                             <HeartIcon size={16} />
@@ -129,5 +157,6 @@ const PostPreview = (props) => {
         </div>
     )
 }
+const mapStateToProps = (state) => ({});
 
 export default PostPreview;
