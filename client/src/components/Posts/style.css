@@ -36,7 +36,7 @@
 .postBox .postOptions .postInfo .namePlace a {
   font-weight: 600;
   font-size: 16px;
-  color: #163286;
+  color: #689f38;
 }
 
 .postBox .postOptions .postInfo .namePlace .postTime {
@@ -120,6 +120,11 @@
   font-size: 14px;
 }
 
+.postBox .postFooter .actionBox button.like,
+.postBox .postFooter .actionBox button.like h6 {
+  color: #FC5D78;
+}
+
 .postBox .postFooter .actionBox button:before {
   content: "";
   display: block;
@@ -151,7 +156,10 @@
   color: #717f91;
 }
 
-.postBox .postFooter .actionBox button .countIcon {}
+.postBox .postFooter .actionBox button .countIcon {
+  display: flex;
+  align-items: center;
+}
 
 .postBox .postFooter .actionBox button .countIcon .countNum {
   margin-left: 8px;
@@ -200,7 +208,7 @@
 } */
 
 .createPost button.addPost {
-  background: #163286;
+  background: #689f38;
   color: #fff;
   border: none;
   position: absolute;
@@ -299,11 +307,11 @@
 }
 
 .ant-btn.ant-btn-primary {
-  background: #163286;
-  border-color: #163286;
+  background: #689f38;
+  border-color: #689f38;
 }
 
 .ant-btn.ant-btn-default:hover {
-  color: #163286;
-  border-color: #163286;
+  color: #689f38;
+  border-color: #689f38;
 }

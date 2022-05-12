@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { KebabHorizontalIcon, HeartIcon, GitCompareIcon, CommentDiscussionIcon, GlobeIcon } from '@primer/octicons-react';
+import { HeartFillIcon, KebabHorizontalIcon, HeartIcon, GitCompareIcon, CommentDiscussionIcon, GlobeIcon } from '@primer/octicons-react';
 import './style.css';
 import moment from 'moment';
 import {
-    InputGroup,
     DropdownButton,
-    Dropdown,
-    FormControl
+    Dropdown
 } from 'react-bootstrap';
 import { Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import defaultImg from '../../assets/images/profile-pic.png';
 import { isAuthenticated } from '../../helpers/auth-helper';
+import { connect } from 'react-redux';
 import EditPost from './EditPost';
+import { likePost, unlikePost } from '../../actions/postsActions';
 
 const PostPreview = (props) => {
-    const { post, deletePost } = props;
+
+    const { post, deletePost, likePost, unlikePost } = props;
     const [timestampString, setTimestampString] = useState("");
     const [deleteModal, setDeleteModal] = useState(false);
     const [editPostModal, setEditPostModal] = useState(false);
-    const [postReq, setPostReq] = useState('');
+    const [values, setValues] = useState({
+        like: ''
+    })
 
     useEffect(() => {
-        setPostReq({...post});
+        const userId = isAuthenticated().user._id;
+        let match = post.likes && post.likes.indexOf(userId) !== -1;
+        setValues({ like: match });
+
         const timer = setInterval(
             () => setTimestampString(formatter(post.createdAt)),
             60000
@@ -34,7 +40,6 @@ const PostPreview = (props) => {
     const formatter = (timestamp) => {
         return moment(timestamp).fromNow();
     };
-
 
     const showEditModal = () => {
         setEditPostModal(true);
@@ -52,12 +57,24 @@ const PostPreview = (props) => {
         deletePost(post._id, isAuthenticated().token);
         setTimeout(() => {
             setDeleteModal(false);
-        }, 2000);
+        }, 1000);
     };
 
     const handleCancel = () => {
         setDeleteModal(false);
     };
+
+    function clickLike() {
+        const userId = isAuthenticated().user._id;
+        const token = isAuthenticated().token;
+        if (values.like) {
+            setValues({ like: !values.like });
+            unlikePost(userId, token, post._id);
+        } else {
+            setValues({ like: !values.like });
+            likePost(userId, token, post._id);
+        }
+    }
 
     return (
         <div className='postBox'>
@@ -88,11 +105,11 @@ const PostPreview = (props) => {
             </div>
             <div className='postFooter'>
                 <div className='actionBox'>
-                    <button>
+                    <button className={`${values.like ? 'like' : 'unlike'}`} onClick={() => clickLike()}>
                         <h6>Like</h6>
                         <div className='countIcon'>
-                            <HeartIcon size={16} />
-                            <span className='countNum'>0</span>
+                            {values.like ? <HeartFillIcon fill='#FC5D78' size={16} /> : <HeartIcon size={16} />}
+                            <span className='countNum'>{post.likes && post.likes.length}</span>
                         </div>
                     </button>
                 </div>
@@ -129,5 +146,6 @@ const PostPreview = (props) => {
         </div>
     )
 }
+const mapStateToProps = (state) => ({});
 
-export default PostPreview;
+export default connect(mapStateToProps, { likePost, unlikePost })(PostPreview);

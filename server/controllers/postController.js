@@ -6,8 +6,8 @@ const _ = require('lodash'); // module to extend and merge the changes that came
 
 
 // method to fetch a specific post by its ID
-exports.postById = async (req, res, next, id) => {
-    await Post.findById(id)
+exports.postById = (req, res, next, id) => {
+    Post.findById(id)
         .populate('postedBy', '_id name photo')
         .exec((err, post) => {
             if (err || !post) {
@@ -23,7 +23,7 @@ exports.postById = async (req, res, next, id) => {
 
 exports.getPosts = async (req, res) => {
     await Post.find({})
-        .select('_id photo body createdAt')
+        .select('_id photo body createdAt likes')
         .populate('postedBy', '_id name')
         .sort([['createdAt', -1]])
         .then(posts => {
@@ -55,7 +55,6 @@ exports.createPost = (req, res, next) => {
                     error: err
                 })
             }
-            console.log(result);
             res.json(result);
         });
     });
@@ -128,4 +127,36 @@ exports.updatePost = (req, res, next) => {
 exports.postPhoto = (req, res, next) => {
     res.set("Content-Type", req.post.photo.contentType);
     return res.send(req.post.photo.data);
+};
+
+// Like Post
+exports.likePost = (req, res) => {
+    Post.findByIdAndUpdate(
+        req.body.postId,
+        { $push: { likes: req.body.userId } },
+        { new: true })
+        .exec((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                })
+            }
+            res.json(result);
+        });
+};
+
+// Unlike Post
+exports.unLikePost = (req, res) => {
+    Post.findByIdAndUpdate(
+        req.body.postId,
+        { $pull: { likes: req.body.userId } },
+        { new: true })
+        .exec((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                })
+            }
+            res.json(result);
+        });
 };

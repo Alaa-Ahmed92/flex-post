@@ -1,6 +1,12 @@
 import { postsConstants } from "../constants/postsConsts";
 
-export const postsReducer = (state = {}, action) => {
+const initalState = {
+    loading: false,
+    posts: [],
+    error: null
+}
+
+export const postsReducer = (state = initalState, action) => {
     switch (action.type) {
         // Fetch Posts
         case postsConstants.FETCH_POSTS_REQUEST:
@@ -12,7 +18,7 @@ export const postsReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
-                data: action.posts.posts,
+                posts: action.posts.posts,
                 error: '',
             }
         case postsConstants.FETCH_POSTS_FAILURE:
@@ -29,10 +35,8 @@ export const postsReducer = (state = {}, action) => {
             }
         case postsConstants.CREATE_POST_SUCCESS:
             return {
-                ...state,
                 loading: false,
-                post: action.post,
-                data: action.updatedPosts,
+                posts: [action.post, ...state.posts],
                 error: ''
             }
         case postsConstants.CREATE_POST_FAILURE:
@@ -49,10 +53,8 @@ export const postsReducer = (state = {}, action) => {
             }
         case postsConstants.DELETE_POST_SUCCESS:
             return {
-                ...state,
+                posts: state.posts.filter((p) => p._id !== action.post._id),
                 loading: false,
-                post: action.post,
-                data: action.updatedPosts,
                 error: ''
             }
         case postsConstants.DELETE_POST_FAILURE:
@@ -69,13 +71,64 @@ export const postsReducer = (state = {}, action) => {
             }
         case postsConstants.UPDATE_POST_SUCCESS:
             return {
-                ...state,
                 loading: false,
-                post: action.post,
-                data: action.updatedPosts,
+                posts: state.posts.map(p => {
+                    return p._id === action.post._id ? action.post : p
+                }),
                 error: ''
             }
         case postsConstants.UPDATE_POST_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
+        // Like Post
+        case postsConstants.LIKE_POST_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case postsConstants.LIKE_POST_SUCCESS:
+            return {
+                loading: false,
+                posts: state.posts.map(p => {
+                    if (p._id === action.post._id) {
+                        return {
+                            ...p,
+                            likes: action.post.likes
+                        }
+                    }
+                    return p;
+                }),
+            }
+        case postsConstants.LIKE_POST_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
+        // Unlike Post
+        case postsConstants.UNLIKE_POST_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case postsConstants.UNLIKE_POST_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                posts: state.posts.map(p => {
+                    if (p._id === action.post._id) {
+                        return {
+                            ...p,
+                            likes: action.post.likes
+                        }
+                    }
+                    return p;
+                }),
+            }
+        case postsConstants.UNLIKE_POST_FAILURE:
             return {
                 ...state,
                 loading: false,
@@ -91,7 +144,8 @@ export const postsReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
-                data: action.updatedPosts
+                posts: action.posts,
+                error: '',
             }
         case postsConstants.FETCH_USER_POSTS_FAILURE:
             return {
@@ -104,38 +158,3 @@ export const postsReducer = (state = {}, action) => {
             return state;
     }
 };
-
-// export const createPostReducer = (state = {}, action) => {
-//     switch (action.type) {
-//         default:
-//             return state;
-//     }
-// };
-
-// export const postsByUserReducer = (state = {}, action) => {
-//     switch (action.type) {
-//         case postsConstants.FETCH_USER_POSTS_REQUEST:
-//             return {
-//                 requesting: true,
-//             }
-//         case postsConstants.FETCH_USER_POSTS_SUCCESS:
-//             return {
-//                 requesting: false,
-//                 data: action.posts
-//             }
-//         case postsConstants.FETCH_USER_POSTS_FAILURE:
-//             return {
-//                 requesting: false,
-//                 error: action.error
-//             }
-//         default:
-//             return state;
-//     }
-// };
-
-// export const deletePostReducer = (state = {}, action) => {
-//     switch (action.type) {
-//         default:
-//             return state;
-//     }
-// };

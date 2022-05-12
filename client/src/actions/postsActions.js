@@ -26,7 +26,7 @@ export const getPosts = () => {
 
 
 export const createPost = (id, token, post) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(request());
         fetch(`${process.env.REACT_APP_API_URL}/posts/new/${id}`, {
             method: 'POST',
@@ -41,15 +41,12 @@ export const createPost = (id, token, post) => {
                 if (data.error) {
                     dispatch(failure(data.error));
                 } else {
-                    const statePosts = getState().posts.data;
-                    const updatedPosts = [...statePosts];
-                    updatedPosts.unshift(data);
-                    dispatch(success(data, updatedPosts));
+                    dispatch(success(data));
                 }
             })
     }
     function request() { return { type: postsConstants.CREATE_POST_REQUEST } };
-    function success(post, updatedPosts) { return { type: postsConstants.CREATE_POST_SUCCESS, post, updatedPosts } };
+    function success(post) { return { type: postsConstants.CREATE_POST_SUCCESS, post } };
     function failure(error) { return { type: postsConstants.CREATE_POST_FAILURE, error } };
 };
 
@@ -74,12 +71,12 @@ export const postsByUser = (id, token) => {
             })
     }
     function request() { return { type: postsConstants.FETCH_USER_POSTS_REQUEST } };
-    function success(updatedPosts) { return { type: postsConstants.FETCH_USER_POSTS_SUCCESS, updatedPosts } };
+    function success(posts) { return { type: postsConstants.FETCH_USER_POSTS_SUCCESS, posts } };
     function failure(error) { return { type: postsConstants.FETCH_USER_POSTS_FAILURE, error } };
 };
 
 export const deletePost = (id, token) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(request());
         fetch(`${process.env.REACT_APP_API_URL}/post/${id}`, {
             method: 'DELETE',
@@ -94,23 +91,17 @@ export const deletePost = (id, token) => {
                 if (data.error) {
                     dispatch(failure(data.error));
                 } else {
-                    const statePosts = getState().posts.data;
-                    const updatedPosts = [...statePosts];
-                    const index = updatedPosts.findIndex(indexPost => {
-                        return indexPost._id === data.post._id
-                    });
-                    updatedPosts.splice(index, 1);
-                    dispatch(success(data.post, updatedPosts));
+                    dispatch(success(data.post));
                 }
             })
     }
     function request() { return { type: postsConstants.DELETE_POST_REQUEST } };
-    function success(post, updatedPosts) { return { type: postsConstants.DELETE_POST_SUCCESS, post, updatedPosts } };
+    function success(post) { return { type: postsConstants.DELETE_POST_SUCCESS, post } };
     function failure(error) { return { type: postsConstants.DELETE_POST_FAILURE, error } };
 };
 
 export const updatePost = (postId, token, post) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(request());
         fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, {
             method: 'PUT',
@@ -125,17 +116,64 @@ export const updatePost = (postId, token, post) => {
                 if (data.error) {
                     dispatch(failure(data.error));
                 } else {
-                    const statePosts = getState().posts.data;
-                    const updatedPosts = [...statePosts];
-                    const index = updatedPosts.findIndex(indexPost => {
-                        return indexPost._id === data._id
-                    });
-                    updatedPosts[index] = data;
-                    dispatch(success(data, updatedPosts));
+                    dispatch(success(data));
                 }
             })
     }
     function request() { return { type: postsConstants.UPDATE_POST_REQUEST } };
-    function success(post, updatedPosts) { return { type: postsConstants.UPDATE_POST_SUCCESS, post, updatedPosts } };
+    function success(post) { return { type: postsConstants.UPDATE_POST_SUCCESS, post } };
     function failure(error) { return { type: postsConstants.UPDATE_POST_FAILURE, error } };
+};
+
+
+export const likePost = (userId, token, postId) => {
+    return (dispatch) => {
+        dispatch(request());
+        fetch(`${process.env.REACT_APP_API_URL}/posts/post/like`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ userId, postId })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    dispatch(failure(data.error));
+                } else {
+                    dispatch(success(data));
+                }
+            })
+    }
+    function request() { return { type: postsConstants.LIKE_POST_REQUEST } };
+    function success(post) { return { type: postsConstants.LIKE_POST_SUCCESS, post } };
+    function failure(error) { return { type: postsConstants.LIKE_POST_FAILURE, error } };
+};
+
+export const unlikePost = (userId, token, postId) => {
+    return (dispatch) => {
+        dispatch(request());
+        fetch(`${process.env.REACT_APP_API_URL}/posts/post/unlike`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ userId, postId })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    dispatch(failure(data.error));
+                } else {
+                    dispatch(success(data));
+                }
+            })
+    }
+    function request() { return { type: postsConstants.UNLIKE_POST_REQUEST } };
+    function success(post) { return { type: postsConstants.UNLIKE_POST_SUCCESS, post } };
+    function failure(error) { return { type: postsConstants.UNLIKE_POST_FAILURE, error } };
 };
