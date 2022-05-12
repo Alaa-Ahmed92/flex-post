@@ -10,7 +10,8 @@ export const userReducer = (state = {}, action) => {
         case userConstants.FETCH_USER_SUCCESS:
             return {
                 loading: false,
-                data: action.user
+                data: action.user,
+                following: action.following
             }
         case userConstants.FETCH_USER_FAILURE:
             return {
@@ -33,6 +34,39 @@ export const userReducer = (state = {}, action) => {
                 loading: false,
                 error: action.error
             }
+        // Follow User
+        case userConstants.FOLLOW_USER_REQUEST:
+            return {
+                loading: true,
+            }
+        case userConstants.FOLLOW_USER_SUCCESS:
+            return {
+                loading: false,
+                data: action.user,
+                following: action.following
+            }
+        case userConstants.FOLLOW_USER_FAILURE:
+            return {
+                loading: false,
+                error: action.error
+            }
+        // unFollow User
+        case userConstants.UNFOLLOW_USER_REQUEST:
+            return {
+                loading: true,
+            }
+        case userConstants.UNFOLLOW_USER_SUCCESS:
+            return {
+                loading: false,
+                data: action.user,
+                following: action.following
+            }
+        case userConstants.UNFOLLOW_USER_FAILURE:
+            return {
+                loading: false,
+                error: action.error
+            }
+        // Delete User
         case userConstants.DELETE_USER:
             return {
                 userDeleted: true,
