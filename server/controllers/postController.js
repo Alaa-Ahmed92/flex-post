@@ -23,7 +23,7 @@ exports.postById = (req, res, next, id) => {
 
 exports.getPosts = async (req, res) => {
     await Post.find({})
-        .select('_id photo body createdAt')
+        .select('_id photo body createdAt likes')
         .populate('postedBy', '_id name')
         .sort([['createdAt', -1]])
         .then(posts => {
@@ -55,7 +55,6 @@ exports.createPost = (req, res, next) => {
                     error: err
                 })
             }
-            console.log(result);
             res.json(result);
         });
     });
@@ -131,31 +130,31 @@ exports.postPhoto = (req, res, next) => {
 };
 
 // Like Post
-exports.like = (req, res) => {
-    Post.findByIdAndUpdate(req.body.postId, { $push: { likes: req.body.userId } }, { new: true }).exec(
-        (err, result) => {
+exports.likePost = (req, res) => {
+    Post.findByIdAndUpdate(
+        req.body.postId,
+        { $push: { likes: req.body.userId } },
+        { new: true })
+        .exec((err, result) => {
             if (err) {
                 return res.status(400).json({
                     error: err
-                });
-            } else {
-                res.json(result);
+                })
             }
-        }
-    );
+            res.json(result);
+        });
 };
 
 // Unlike Post
-exports.unLikePost = (req, res, next) => {
+exports.unLikePost = (req, res) => {
     Post.findByIdAndUpdate(
         req.body.postId,
         { $pull: { likes: req.body.userId } },
         { new: true })
-        // .populate('likes', '_id name')
         .exec((err, result) => {
             if (err) {
                 return res.status(400).json({
-                    error: 'No access.'
+                    error: err
                 })
             }
             res.json(result);

@@ -15,7 +15,7 @@ const Following = (props) => {
                 <div className='followUser'>
                     <div className='row'>
                         {following.map((profile, i) => (
-                            <div className='col-md-6' key={i}>
+                            <div className='col-md-4' key={i}>
                                 <Link className='profileLink' to={`/user/${profile._id}`}>
                                     <img
                                         className='img-fluid'

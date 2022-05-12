@@ -25,8 +25,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    border: 1px dashed #163286;
-    color: #163286;
+    border: 1px dashed #689f38;
+    color: #689f38;
 }
 
 .userInfo .userIntroActions .userAuth a {
@@ -38,11 +38,10 @@
 }
 
 .userInfo .userIntroActions h4 {
-    font-weight: 600;
-    background: #163286;
+    background: #689f38;
     color: #fff;
     border-radius: 0 50px 50px 0;
-    padding: 4px 20px;
+    padding: 7px 20px;
     position: absolute;
     left: -5px;
     font-size: 17px;
@@ -77,7 +76,7 @@
     display: flex;
     align-items: center;
     font-weight: 600;
-    color: #163286;
+    color: #689f38;
 }
 
 .userInfo .userListInfo div span {

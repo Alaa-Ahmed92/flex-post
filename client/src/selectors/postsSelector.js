@@ -1,1 +1,1 @@
-export const getPostsSelector = (state) => state.posts.data;
+export const getPostsSelector = (state) => state.posts.posts;
