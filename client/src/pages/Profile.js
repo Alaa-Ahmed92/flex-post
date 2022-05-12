@@ -36,10 +36,12 @@ const Profile = (props) => {
 
     function followUserAction() {
         followUser(isAuthenticated().user._id, isAuthenticated().token, user._id);
+        message.success(`Following ${user.name}`);
     }
 
     function unFollowUserAction() {
         unFollowUser(isAuthenticated().user._id, isAuthenticated().token, user._id);
+        message.info(`Unfollowing ${user.name}`);
     }
 
     function renderAuthUser() {
