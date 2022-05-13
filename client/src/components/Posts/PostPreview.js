@@ -13,6 +13,7 @@ import { isAuthenticated } from '../../helpers/auth-helper';
 import { connect } from 'react-redux';
 import EditPost from './EditPost';
 import { likePost, unlikePost } from '../../actions/postsActions';
+import SeeMore from '../SeeMore/SeeMore';
 
 const PostPreview = (props) => {
 
@@ -76,6 +77,22 @@ const PostPreview = (props) => {
         }
     }
 
+
+
+
+
+    function seeMore(body) {
+        if (body.length > 550) {
+            return body.substring(0, 550)
+        } else {
+            return body;
+        }
+    }
+
+    function seeMoreClick(body) {
+        return body;
+    }
+
     return (
         <div className='postBox'>
             <div className='postHead'>
@@ -99,7 +116,7 @@ const PostPreview = (props) => {
                     )}
                 </div>
                 <div className='postBody'>
-                    <p>{post.body}</p>
+                    <SeeMore>{post.body}</SeeMore>
                     {post.photo && <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}?${new Date().getTime()}`} />}
                 </div>
             </div>

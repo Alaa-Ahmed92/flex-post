@@ -36,7 +36,7 @@ const FindPeople = (props) => {
     }
 
     function followUser(id, token, followId) {
-        return fetch(`${process.env.REACT_APP_API_URL}/user/follow`, {
+        return fetch(`${process.env.REACT_APP_API_URL}/users/user/follow`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
