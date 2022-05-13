@@ -51,21 +51,23 @@ const FindPeople = (props) => {
     return (
         <div className='findPeople userInfo'>
             <div className='boxTitle'><h4>People You May Know</h4></div>
-            {people && people.map((user, i) => (
-                <div className='userCard' key={user._id}>
-                    <Link to={`/user/${user._id}`} className='userCardInfo'>
-                        <img
-                            className='img-fluid'
-                            src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
-                            onError={i => i.target.src = defaultImg}
-                        />
-                        <h5>{user.name}</h5>
-                    </Link>
-                    <div className='userCardActions'>
-                        <button onClick={() => clickFollow(user, i)}><PersonAddIcon size={16} /></button>
+            <div className='findPeopleWrapper'>
+                {people && people.map((user, i) => (
+                    <div className='userCard' key={user._id}>
+                        <Link to={`/user/${user._id}`} className='userCardInfo'>
+                            <img
+                                className='img-fluid'
+                                src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
+                                onError={i => i.target.src = defaultImg}
+                            />
+                            <h5>{user.name}</h5>
+                        </Link>
+                        <div className='userCardActions'>
+                            <button onClick={() => clickFollow(user, i)}><PersonAddIcon size={16} /></button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     )
 };
