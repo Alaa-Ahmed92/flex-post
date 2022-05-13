@@ -9,6 +9,8 @@ const _ = require('lodash'); // module to extend and merge the changes that came
 exports.postById = (req, res, next, id) => {
     Post.findById(id)
         .populate('postedBy', '_id name photo')
+        .populate('comments', 'text createdAt')
+        .populate('comments.postedBy', '_id name')
         .exec((err, post) => {
             if (err || !post) {
                 return res.status(400).json({
@@ -23,8 +25,10 @@ exports.postById = (req, res, next, id) => {
 
 exports.getPosts = async (req, res) => {
     await Post.find({})
-        .select('_id photo body createdAt likes')
+        .select('_id photo body createdAt likes comments')
         .populate('postedBy', '_id name')
+        .populate('comments', 'text createdAt')
+        .populate('comments.postedBy', '_id name')
         .sort([['createdAt', -1]])
         .then(posts => {
             res.json({ posts })
@@ -75,6 +79,7 @@ exports.deletePost = (req, res) => {
 exports.postsByUser = (req, res) => {
     Post.find({ postedBy: req.profile._id })
         .populate('postedBy', '_id name photo')
+        .populate('comments.postedBy', '_id name')
         .sort([['createdAt', -1]])
         .exec((err, posts) => {
             if (err) {
@@ -160,3 +165,23 @@ exports.unLikePost = (req, res) => {
             res.json(result);
         });
 };
+
+// Add Comment
+exports.addComment = (req, res) => {
+    let comment = req.body.comment;
+    comment.postedBy = req.body.userId;
+    Post.findByIdAndUpdate(
+        req.body.postId,
+        { $push: { comments: comment } },
+        { new: true })
+        .populate('comments.postedBy', '_id name')
+        .populate('postedBy', '_id name photo')
+        .exec((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                })
+            }
+            res.json(result);
+        });
+}

@@ -1,17 +1,26 @@
 .findPeople {
     position: relative;
+    padding: 0 !important;
+}
+
+.findPeopleWrapper {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-top: 5px;
 }
 
 .findPeople .boxTitle {
-    margin-bottom: 50px;
+    padding-top: 20px;
 }
 
 .findPeople .boxTitle h4 {
-    background: #689f38;
+    background: #2522BA;
     color: #fff;
     border-radius: 0 50px 50px 0;
     padding: 7px 20px;
-    position: absolute;
+    position: relative;
+    display: inline-block;
     left: -5px;
     font-size: 17px;
 }
@@ -29,7 +38,7 @@
 }
 
 .findPeople .userCard .userCardInfo img {
-    width: 40px;
+    width: 30px;
     border-radius: 50%;
 }
 
@@ -55,8 +64,8 @@
     align-items: center;
     justify-content: center;
     border-width: 1px;
-    border-color: #689f38;
-    color: #689f38;
+    border-color: #2522BA;
+    color: #2522BA;
 }
 
 .findPeople .userCard .userCardActions a {}

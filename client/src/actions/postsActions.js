@@ -177,3 +177,31 @@ export const unlikePost = (userId, token, postId) => {
     function success(post) { return { type: postsConstants.UNLIKE_POST_SUCCESS, post } };
     function failure(error) { return { type: postsConstants.UNLIKE_POST_FAILURE, error } };
 };
+
+// Add Comment
+export const addComment = (userId, token, postId, comment) => {
+    return (dispatch) => {
+        dispatch(request());
+        fetch(`${process.env.REACT_APP_API_URL}/posts/post/new/comment`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ userId, postId, comment })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    dispatch(failure(data.error));
+                } else {
+                    console.log(data);
+                    dispatch(success(data));
+                }
+            })
+    }
+    function request() { return { type: postsConstants.ADD_COMMENT_REQUEST } };
+    function success(post) { return { type: postsConstants.ADD_COMMENT_SUCCESS, post } };
+    function failure(error) { return { type: postsConstants.ADD_COMMENT_FAILURE, error } };
+};

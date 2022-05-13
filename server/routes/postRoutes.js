@@ -10,7 +10,8 @@ const {
     updatePost,
     postPhoto,
     likePost,
-    unLikePost
+    unLikePost,
+    addComment
 } = require('../controllers/postController');
 const { requireSignin } = require('../controllers/authController');
 const { userById } = require('../controllers/userController');
@@ -45,5 +46,8 @@ router.put("/posts/post/like", requireSignin, likePost);
 
 // Unlike Post
 router.put("/posts/post/unlike", requireSignin, unLikePost);
+
+// Add Comment
+router.put("/posts/post/new/comment", requireSignin, addComment);
 
 module.exports = router;

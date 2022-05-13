@@ -14,11 +14,13 @@ import { connect } from 'react-redux';
 import EditPost from './EditPost';
 import { likePost, unlikePost } from '../../actions/postsActions';
 import SeeMore from '../SeeMore/SeeMore';
+import Comments from '../Comments/Comments';
 
 const PostPreview = (props) => {
 
     const { post, deletePost, likePost, unlikePost } = props;
     const [timestampString, setTimestampString] = useState("");
+    const [commentArea, setcommentArea] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [editPostModal, setEditPostModal] = useState(false);
     const [values, setValues] = useState({
@@ -77,20 +79,8 @@ const PostPreview = (props) => {
         }
     }
 
-
-
-
-
-    function seeMore(body) {
-        if (body.length > 550) {
-            return body.substring(0, 550)
-        } else {
-            return body;
-        }
-    }
-
-    function seeMoreClick(body) {
-        return body;
+    function toggleCommentArea() {
+        setcommentArea(!commentArea);
     }
 
     return (
@@ -131,11 +121,11 @@ const PostPreview = (props) => {
                     </button>
                 </div>
                 <div className='actionBox'>
-                    <button>
+                    <button onClick={() => toggleCommentArea()}>
                         <h6>Comment</h6>
                         <div className='countIcon'>
                             <CommentDiscussionIcon size={16} />
-                            <span className='countNum'>0</span>
+                            <span className='countNum'>{post.comments.length}</span>
                         </div>
                     </button>
                 </div>
@@ -149,8 +139,7 @@ const PostPreview = (props) => {
                     </button>
                 </div>
             </div>
-            <div className='postComments'></div>
-            <div className='commentArea'></div>
+            {commentArea && <Comments post={post} />}
             <Modal
                 title="Delete Post"
                 visible={deleteModal}

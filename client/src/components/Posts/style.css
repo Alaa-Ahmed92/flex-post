@@ -36,7 +36,7 @@
 .postBox .postOptions .postInfo .namePlace a {
   font-weight: 600;
   font-size: 16px;
-  color: #689f38;
+  color: #2522BA;
 }
 
 .postBox .postOptions .postInfo .namePlace .postTime {
@@ -209,7 +209,7 @@
 } */
 
 .createPost button.addPost {
-  background: #689f38;
+  background: #2522BA;
   color: #fff;
   border: none;
   position: absolute;
@@ -308,11 +308,11 @@
 }
 
 .ant-btn.ant-btn-primary {
-  background: #689f38;
-  border-color: #689f38;
+  background: #2522BA;
+  border-color: #2522BA;
 }
 
 .ant-btn.ant-btn-default:hover {
-  color: #689f38;
-  border-color: #689f38;
+  color: #2522BA;
+  border-color: #2522BA;
 }

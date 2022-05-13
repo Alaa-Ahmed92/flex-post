@@ -134,6 +134,27 @@ export const postsReducer = (state = initalState, action) => {
                 loading: false,
                 error: action.error
             }
+        // Add Comment
+        case postsConstants.ADD_COMMENT_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case postsConstants.ADD_COMMENT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                posts: state.posts.map(p => {
+                    return p._id === action.post._id ? action.post : p
+                }),
+                error: ''
+            }
+        case postsConstants.ADD_COMMENT_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
         // Fetch User Posts
         case postsConstants.FETCH_USER_POSTS_REQUEST:
             return {
