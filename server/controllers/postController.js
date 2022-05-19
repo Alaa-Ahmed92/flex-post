@@ -5,7 +5,7 @@ const fs = require('fs');
 const _ = require('lodash'); // module to extend and merge the changes that came in the request body to update the data.
 
 
-// method to fetch a specific post by its ID
+// Method to fetch a specific post by its ID
 exports.postById = (req, res, next, id) => {
     Post.findById(id)
         .populate('postedBy', '_id name photo')
@@ -23,6 +23,7 @@ exports.postById = (req, res, next, id) => {
 
 }
 
+// Get All Posts
 exports.getPosts = async (req, res) => {
     await Post.find({})
         .select('_id photo body createdAt likes comments')
@@ -36,6 +37,7 @@ exports.getPosts = async (req, res) => {
         .catch(err => console.log(err))
 };
 
+// Create Post
 exports.createPost = (req, res, next) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
@@ -64,6 +66,7 @@ exports.createPost = (req, res, next) => {
     });
 };
 
+// Delete Post
 exports.deletePost = (req, res) => {
     let post = req.post;
     post.remove((err) => {
@@ -76,6 +79,7 @@ exports.deletePost = (req, res) => {
     });
 }
 
+// Get Posts By User
 exports.postsByUser = (req, res) => {
     Post.find({ postedBy: req.profile._id })
         .populate('postedBy', '_id name photo')
@@ -91,6 +95,7 @@ exports.postsByUser = (req, res) => {
         })
 }
 
+// Is Author
 exports.isPoster = (req, res, next) => {
     let isPoster = req.post && req.auth && req.post.postedBy._id == req.auth._id;
     if (!isPoster) {
@@ -101,6 +106,7 @@ exports.isPoster = (req, res, next) => {
     next()
 };
 
+// Update Post
 exports.updatePost = (req, res, next) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
@@ -129,6 +135,7 @@ exports.updatePost = (req, res, next) => {
     });
 };
 
+// Post Photo
 exports.postPhoto = (req, res, next) => {
     res.set("Content-Type", req.post.photo.contentType);
     return res.send(req.post.photo.data);

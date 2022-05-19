@@ -1,6 +1,7 @@
 import { loginConstants } from "../constants/loginConsts";
 import { authenticate } from '../helpers/auth-helper';
 
+// Login User
 export const loginUser = (user) => {
     return (dispatch) => {
         dispatch(request(user));
@@ -28,6 +29,7 @@ export const loginUser = (user) => {
     function failure(error) { return { type: loginConstants.LOGIN_FAILURE, error } };
 };
 
+// Logout User
 export const logoutUser = () => {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_API_URL}/signout/`, {

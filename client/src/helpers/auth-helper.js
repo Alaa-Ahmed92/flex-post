@@ -8,6 +8,7 @@ export function authenticate(jwt, next) {
     next();
 };
 
+// To Get Authentcated
 export function isAuthenticated() {
     if (typeof window == 'undefined') return false;
     if (typeof window !== 'undefined') {
@@ -15,11 +16,13 @@ export function isAuthenticated() {
     };
 };
 
+// Private Route
 export function PrivateRoute({ children }) {
     let auth = isAuthenticated();
     return auth ? children : <Navigate to='/login' />
 };
 
+// Update User on localStorage
 export function updateUserLocal(user, next) {
     if (typeof window !== 'undefined') {
         let auth = JSON.parse(localStorage.getItem('jwt'));
@@ -29,6 +32,7 @@ export function updateUserLocal(user, next) {
     next();
 };
 
+// Check Follow
 export function checkFollow(user) {
     const auth = isAuthenticated();
     const match = user && user.followers.some((follower) => {
@@ -37,6 +41,7 @@ export function checkFollow(user) {
     return match;
 }
 
+// Read
 export const read = async (id, token) => {
     try {
         let response = await fetch(`${process.env.REACT_APP_API_URL}/user/${id}`, {

@@ -1,14 +1,35 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import '~antd/dist/antd.css';
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 
 body {
-  background-color: #e9ebed;
-  font-family: 'Open Sans', sans-serif;
-  /* height: 5000px; */
+  background-color: #f3f4f6;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 .page {
   margin-top: 100px;
   padding-bottom: 50px;
+}
+
+.btn-check:active+.btn-primary:focus,
+.btn-check:checked+.btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+  box-shadow: none !important;
+}
+
+hr:not([size]) {
+    height: .5px !important;
+    border: none;
+    background: #bdbdbf;
+}
+
+.ant-modal .ant-modal-content {
+  border-radius: 6px !important;
+  overflow: hidden;
+}
+
+.ant-modal .ant-modal-content .ant-modal-title {
+  font-size: 22px;
 }

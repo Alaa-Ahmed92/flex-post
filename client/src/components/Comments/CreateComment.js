@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import {
     Form,
 } from 'react-bootstrap';
+import { isAuthenticated } from '../../helpers/auth-helper';
 import {
     PaperAirplaneIcon
-} from '@primer/octicons-react';
-import { isAuthenticated } from '../../helpers/auth-helper';
+} from '@heroicons/react/outline';
 
 const CreateComment = (props) => {
     const { addComment, post } = props;
@@ -62,7 +62,7 @@ const CreateComment = (props) => {
                         type='submit'
                         disabled={disabledButt}
                     >
-                        <PaperAirplaneIcon size={16} />
+                        <PaperAirplaneIcon />
                     </button>
                 </div>
             </Form>

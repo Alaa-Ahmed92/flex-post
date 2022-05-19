@@ -1,7 +1,7 @@
 import React from 'react';
 import EditForm from '../components/EditForm/EditForm';
 
-const EditProfile = (props) => {
+const EditProfile = () => {
 
     return (
         <div className='edit-profile page'>

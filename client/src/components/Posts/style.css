@@ -1,8 +1,8 @@
 .postBox {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   border-radius: 6px;
   background: #fff;
   margin-bottom: 25px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
 }
 
 .postBox .postHead {
@@ -23,8 +23,8 @@
 .postBox .postOptions .postInfo .imgPlace {
   border-radius: 50%;
   overflow: hidden;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   margin-right: 10px;
 }
 
@@ -36,7 +36,7 @@
 .postBox .postOptions .postInfo .namePlace a {
   font-weight: 600;
   font-size: 16px;
-  color: #2522BA;
+  color: #00B488;
 }
 
 .postBox .postOptions .postInfo .namePlace .postTime {
@@ -46,15 +46,51 @@
   font-size: 14px;
 }
 
+.postBox .postOptions .postInfo .namePlace .postTime svg {
+  width: 18px;
+}
+
 .postBox .postOptions .postInfo .namePlace .postTime span {
   margin-left: 5px;
 }
 
-.postBox .postOptions .postActions {}
+.postBox .postOptions .postActions .dropdown-menu {
+  padding: 0.25rem;
+  border: none;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+}
+
+.postBox .postOptions .postActions .dropdown-menu .dropdown-item {
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.postBox .postOptions .postActions .dropdown-menu .dropdown-item svg {
+  color: #9ca3af;
+  width: 22px;
+}
+
+.postBox .postOptions .postActions .dropdown-menu .dropdown-item:hover svg {
+  color: #6b7280;
+}
+
+.postBox .postOptions .postActions .dropdown-menu .dropdown-item span {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.postBox .postOptions .postActions .dropdown-menu .dropdown-item:hover,
+.postBox .postOptions .postActions .dropdown-menu .dropdown-item:focus,
+.postBox .postOptions .postActions .dropdown-menu .dropdown-item:active {
+  background-color: #f3f4f6;
+  color: #333;
+}
 
 .postBox .postOptions .postActions button {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   padding: 0;
@@ -64,7 +100,17 @@
   border: none;
   outline: none;
   box-shadow: none;
-  color: #98a6ad;
+  color: #9ca3af;
+}
+
+.postBox .postOptions .postActions button svg {
+  width: 26px;
+}
+
+.postBox .postOptions .postActions .dropdown.show button,
+.postBox .postOptions .postActions button:hover {
+  background-color: #e5e7eb;
+  color: #4b5563;
 }
 
 .postBox .postOptions .postActions button:after {
@@ -76,7 +122,6 @@
   font-size: 15px;
   margin-bottom: 10px;
   white-space: pre-line;
-  /* To handle new line */
 }
 
 .postBox .postBody img {
@@ -84,10 +129,6 @@
   border-radius: 6px;
   margin-top: 10px;
 }
-
-/* .postBox .postOptions .postInfo .imgPlace img {
-  
-  } */
 
 .postBox .postFooter {
   display: flex;
@@ -162,27 +203,36 @@
   align-items: center;
 }
 
+.postBox .postFooter .actionBox button .countIcon svg {
+  width: 22px;
+}
+
 .postBox .postFooter .actionBox button .countIcon .countNum {
   margin-left: 8px;
 }
 
-.postBox .postFooter {}
-
 .createPost {
   padding-bottom: 35px !important;
+}
+
+.createPost.userInfo {
+  padding: 20px;
 }
 
 .createPost form {
   display: flex;
 }
 
-.createPost .imgPlace {}
+.createPost .imgPlace {
+  border-radius: 50%;
+  overflow: hidden;
+  max-width: 48px;
+  max-height: 48px;
+  margin-right: 10px;
+}
 
 .createPost .imgPlace img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
+  width: 100%;
 }
 
 .createPost .postBody {
@@ -190,7 +240,7 @@
 }
 
 .createPost .postBody textarea {
-  background: #f0f2f5;
+  background: #f3f4f6;
   border: none;
   border-radius: 6px;
   resize: none;
@@ -203,13 +253,8 @@
   transition: .3s ease-in-out;
 }
 
-/* .createPost .postBody textarea:focus {
-  height: 300px;
-  transition: .3s ease-in-out;
-} */
-
 .createPost button.addPost {
-  background: #2522BA;
+  background: #00B488;
   color: #fff;
   border: none;
   position: absolute;
@@ -217,11 +262,17 @@
   bottom: -15px;
   padding: 5px 30px;
   border-radius: 50px;
-  border: 4px solid #e9ebed;
+  border: 4px solid #f3f4f6;
+  transition: .3s ease-in-out;
+}
+
+.createPost button.addPost:hover {
+  background: #01a078;
+  transition: .3s ease-in-out;
 }
 
 .createPost button:disabled {
-  background: #808080;
+  background: #808080 !important;
 }
 
 .createPost .postBody textarea.bodyStyleClass {
@@ -251,14 +302,13 @@
 }
 
 .createPost .custImg label:hover {
-  background: #f0f2f5;
+  background: #f3f4f6;
   transition: .3s ease-in-out;
 }
 
 
 .createPost .custImg label svg {
   width: 25px;
-  height: 25px;
 }
 
 .createPost .custImg label span {
@@ -268,7 +318,7 @@
 
 .createPost .custImg .previewImg {
   margin-top: 10px;
-  border: 2px solid #f0f2f5;
+  border: 2px solid #f3f4f6;
   border-radius: 6px;
   padding: 10px;
 }
@@ -279,7 +329,7 @@
 }
 
 .editPostModal textarea {
-  min-height: 150px;
+  min-height: 300px;
   margin-bottom: 20px;
   outline: none !important;
   box-shadow: none !important;
@@ -302,17 +352,15 @@
 
 .ant-btn {
   width: 100px;
-  /* text-transform: uppercase;
-  font-weight: 600; */
   border-radius: 50px;
 }
 
 .ant-btn.ant-btn-primary {
-  background: #2522BA;
-  border-color: #2522BA;
+  background: #00B488;
+  border-color: #00B488;
 }
 
 .ant-btn.ant-btn-default:hover {
-  color: #2522BA;
-  border-color: #2522BA;
+  color: #00B488;
+  border-color: #00B488;
 }

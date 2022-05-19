@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { createPost } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import {
-    ImageIcon
-} from '@primer/octicons-react';
+    PhotographIcon
+} from '@heroicons/react/outline';
 import {
     Form,
 } from 'react-bootstrap';
@@ -63,7 +63,7 @@ const CreatePost = (props) => {
                 <div className='imgPlace'>
                     <Link to={`/user/${authUser.user._id}`}>
                         <img
-                            src={`${process.env.REACT_APP_API_URL}/user/photo/${authUser.user._id}`}
+                            src={`${process.env.REACT_APP_API_URL}/user/photo/${authUser.user._id}?${new Date().getTime()}`}
                             onError={i => i.target.src = defaultImg}
                         />
                     </Link>
@@ -84,7 +84,7 @@ const CreatePost = (props) => {
                             onChange={handleUploadPhoto}
                             accept='image/*'
                         />
-                        <label htmlFor="postImg"><ImageIcon size={24} /><span>{postPhoto.photo ? postPhoto.photo.name : 'No photo chosen'}</span></label>
+                        <label htmlFor="postImg"><PhotographIcon /><span>{postPhoto.photo ? postPhoto.photo.name : 'No photo chosen'}</span></label>
                         {postPhoto && postPhoto.photo && (
                             <div className='previewImg'>
                                 <img

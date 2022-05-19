@@ -11,22 +11,42 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/loginActions';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { getUserSelector } from '../../selectors/userSelector';
+import defaultImg from '../../assets/images/profile-pic.png';
+import brandLogo from '../../assets/images/logo.png';
+import whiteBrandLogo from '../../assets/images/wh-logo.png';
+import brandWhiteLogo from '../../assets/images/logo-white.png';
+import {
+    LogoutIcon
+} from '@heroicons/react/outline';
 
 const NavbarMenu = (props) => {
-    const { logoutUser, user } = props;
+    const { logoutUser } = props;
+    const jwt = isAuthenticated();
+    const photoUrl = jwt.user && jwt.user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}?${new Date().getTime()}` : defaultImg;
+
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg">
             <Container>
-                <Navbar.Brand href="#home">Flux Post</Navbar.Brand>
+                <Navbar.Brand href="#home">
+                    <img src={brandWhiteLogo} alt="Flux Post" />
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Link className='nav-link' to="/">Home</Link>
-                        {isAuthenticated() ? (
-                            <NavDropdown title={isAuthenticated().user.name}>
-                                <Link className='dropdown-item' to={`/user/${isAuthenticated().user._id}`}>Profile</Link>
+                        {jwt ? (
+                            <NavDropdown title={<img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = defaultImg} />}>
+                                <Link className='dropdown-item userProfile' to={`/user/${jwt.user._id}`}>
+                                    <div className='navImgInfo'>
+                                        <img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = defaultImg} />
+                                    </div>
+                                    <div className='navUserInfo'>
+                                        <h6>{jwt.user.name}</h6>
+                                        <span>View Profile</span>
+                                    </div>
+                                </Link>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={logoutUser}>Logout</NavDropdown.Item>
+                                <NavDropdown.Item onClick={logoutUser}><LogoutIcon /> <span>Logout</span></NavDropdown.Item>
                             </NavDropdown>
                         ) : <>
                             <Link className='nav-link' to="/login">Login</Link>

@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import defaultImg from '../../assets/images/profile-pic.png';
 import { message } from 'antd';
-import {
-    PersonAddIcon
-} from '@primer/octicons-react';
 import './FindPeople.css';
 
 const FindPeople = (props) => {
@@ -50,7 +47,7 @@ const FindPeople = (props) => {
 
     return (
         <div className='findPeople userInfo'>
-            <div className='boxTitle'><h4>People You May Know</h4></div>
+            <div className='boxTitle'><h4>Who to follow</h4></div>
             <div className='findPeopleWrapper'>
                 {people && people.map((user, i) => (
                     <div className='userCard' key={user._id}>
@@ -63,7 +60,7 @@ const FindPeople = (props) => {
                             <h5>{user.name}</h5>
                         </Link>
                         <div className='userCardActions'>
-                            <button onClick={() => clickFollow(user, i)}><PersonAddIcon size={16} /></button>
+                            <button onClick={() => clickFollow(user, i)}>Follow</button>
                         </div>
                     </div>
                 ))}

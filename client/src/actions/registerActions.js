@@ -1,5 +1,6 @@
 import { registerConstants } from "../constants/registerConsts";
 
+// Register User
 export const registerUser = (user) => {
     return (dispatch) => {
         dispatch(request());

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'antd';
 import {
-    Form
+    Form,
+    Button,
+    Modal
 } from 'react-bootstrap';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { updatePost } from '../../actions/postsActions';
 import { connect } from 'react-redux';
+import './style.css';
 
 const EditPost = (props) => {
     const { post, editPostModal, updatePost, handleEditCancel } = props;
@@ -69,27 +71,36 @@ const EditPost = (props) => {
 
     return (
         <Modal
-            title="Edit Post"
-            visible={editPostModal}
-            footer={false}
-            closable={false}
-            width={700}
+            dialogClassName="modal-700w"
+            show={editPostModal}
+            onHide={handleCancel}
+            backdrop="static"
+            keyboard={false}
             className={'editPostModal'}
+            size="lg"
+            centered
         >
+            <Modal.Header>
+                <Modal.Title>Edit Post</Modal.Title>
+            </Modal.Header>
             <Form onSubmit={handleSubmit}>
-                <textarea className='form-control' name='body' value={postValues.body} onChange={handleChange}></textarea>
-                {validError && <div>{validError}</div>}
-                <input
-                    type="file"
-                    className="form-control"
-                    onChange={handleUploadPhoto}
-                    accept='image/*'
-                />
-                {post && post.photo && <img src={postPhoto.photo ? URL.createObjectURL(postPhoto.photo) : `${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} />}
-                <div className='footerActions'>
-                    <button className='ant-btn ant-btn-default' onClick={handleCancel}><span>Cancel</span></button>
-                    <button className='ant-btn ant-btn-primary' type='submit'><span>Update!</span></button>
-                </div>
+                <Modal.Body>
+                    <textarea className='form-control' name='body' value={postValues.body} onChange={handleChange}></textarea>
+                    {validError && <div>{validError}</div>}
+                    <input
+                        type="file"
+                        className="form-control"
+                        onChange={handleUploadPhoto}
+                        accept='image/*'
+                    />
+                    {post && post.photo && <img src={postPhoto.photo ? URL.createObjectURL(postPhoto.photo) : `${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} />}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCancel}>
+                        No, Keep it.
+                    </Button>
+                    <Button variant="primary" type='submit'>Update!</Button>
+                </Modal.Footer>
             </Form>
         </Modal>
     )

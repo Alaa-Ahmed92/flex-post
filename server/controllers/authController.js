@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const expressJWT = require('express-jwt');
 require('dotenv').config();
 
+// Sign up
 exports.signup = async (req, res) => {
     const userExists = await User.findOne({ email: req.body.email });
     if (userExists) {
@@ -15,6 +16,7 @@ exports.signup = async (req, res) => {
     res.status(200).json({ message: "Signup Successfully! Please go to login." });
 };
 
+// Sign in
 exports.signin = (req, res) => {
     const { email, password } = req.body;
     User.findOne({ email }, (err, user) => {
@@ -42,6 +44,7 @@ exports.signin = (req, res) => {
     })
 };
 
+// Sign Out
 exports.signout = (req, res) => {
     res.clearCookie('t');
     return res.status(200).json({
@@ -49,6 +52,7 @@ exports.signout = (req, res) => {
     })
 };
 
+// Rquire sign in
 exports.requireSignin = expressJWT({
     secret: process.env.JWT_SECRET,
     userProperty: "auth"

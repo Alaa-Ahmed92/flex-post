@@ -2,35 +2,87 @@
     border-radius: 6px;
     background: #fff;
     margin-bottom: 50px;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
     position: relative;
+}
+
+.userInfo .userIntro {
+    padding: 20px;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .userInfo .userIntroActions {
     display: flex;
-    justify-content: end;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .userInfo .userIntroActions .userAuth {
     display: flex;
 }
 
-.userInfo .userIntroActions .userAuth a,
-.userInfo .userIntroActions .userAuth button {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    border: 1px dashed #2522BA;
-    color: #2522BA;
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu {
+    padding: 0.25rem;
+    border: none;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 }
 
-.userInfo .userIntroActions .userAuth a {
-    margin-right: 10px;
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu .dropdown-item {
+    padding: 0.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu .dropdown-item:hover svg {
+    color: #6b7280;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu .dropdown-item svg {
+    width: 22px;
+    color: #9ca3af;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu a.dropdown-item span,
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu button.dropdown-item span {
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu .dropdown-item:hover,
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu .dropdown-item:focus,
+.userInfo .userIntroActions .userAuth .dropdown .dropdown-menu .dropdown-item:active {
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown button.dropdown-toggle {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #9ca3af;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown button.dropdown-toggle svg {
+  width: 26px;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown.show button.dropdown-toggle,
+.userInfo .userIntroActions .userAuth button.dropdown-toggle:hover {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.userInfo .userIntroActions .userAuth .dropdown button.dropdown-toggle::after {
+    display: none;
 }
 
 .userInfo .userIntroActions .userAuth button {
@@ -38,13 +90,7 @@
 }
 
 .userInfo .userIntroActions h4 {
-    background: #2522BA;
-    color: #fff;
-    border-radius: 0 50px 50px 0;
-    padding: 7px 20px;
-    position: absolute;
-    left: -5px;
-    font-size: 17px;
+    margin: 0;
 }
 
 .userInfo .userIntro .about {
@@ -55,9 +101,8 @@
 
 .userInfo .userListInfo {
     font-size: 16px;
+    padding: 10px 0;
 }
-
-.userInfo .userListInfo .userImg {}
 
 .userInfo .userListInfo .userImg img {
     width: 50px;
@@ -72,11 +117,16 @@
 }
 
 .userInfo .userListInfo div {
-    margin: 10px 0;
+    padding: 5px 20px;
     display: flex;
     align-items: center;
-    font-weight: 600;
-    color: #2522BA;
+    font-weight: 500;
+    color: #00B488;
+}
+
+.userInfo .userListInfo div svg {
+    width: 22px;
+    color: #9ca3af;
 }
 
 .userInfo .userListInfo div span {
@@ -90,7 +140,7 @@
     background: #fff;
     margin-bottom: 50px;
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
     display: flex;
     align-items: center;
 }
@@ -120,5 +170,3 @@
 .profileHeader .headUserInfo h2 span {
     font-weight: 300;
 }
-
-/* .profileHeader .headImg {} */

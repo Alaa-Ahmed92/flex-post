@@ -1,5 +1,6 @@
 .followUser {
-    margin-top: 35px;
+    padding: 20px;
+    padding-top: 0;
 }
 
 
@@ -10,11 +11,12 @@
 
 .followUser .profileLink img {
     border-radius: 6px;
+    height: 109px;
 }
 
 .followUser .profileLink span {
     display: block;
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
     font-weight: 500;
     margin-top: 5px;

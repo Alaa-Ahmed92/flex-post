@@ -1,7 +1,8 @@
 import { userConstants } from "../constants/userConsts";
 import { logoutUser } from './loginActions';
-import { isAuthenticated, updateUserLocal, checkFollow } from '../helpers/auth-helper';
+import { updateUserLocal, checkFollow } from '../helpers/auth-helper';
 
+// Get User
 export const getUser = (id, token) => {
     return (dispatch) => {
         dispatch(request());
@@ -29,6 +30,7 @@ export const getUser = (id, token) => {
     function failure(error) { return { type: userConstants.FETCH_USER_FAILURE, error } };
 };
 
+// Update User
 export const updateUser = (id, token, user) => {
     return (dispatch) => {
         dispatch(request());
@@ -56,6 +58,7 @@ export const updateUser = (id, token, user) => {
     function failure(error) { return { type: userConstants.UPDATE_USER_FAILURE, error } };
 };
 
+// Delete User
 export const deleteUser = (id, token) => {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_API_URL}/user/${id}`, {
@@ -73,6 +76,7 @@ export const deleteUser = (id, token) => {
     function request() { return { type: userConstants.DELETE_USER } };
 }
 
+// Find People
 export const findPeople = (id, token) => {
     return (dispatch) => {
         dispatch(request());
@@ -98,6 +102,7 @@ export const findPeople = (id, token) => {
     function failure(error) { return { type: userConstants.FIND_PEOPLE_FAILURE, error } };
 };
 
+// Follow User
 export const followUser = (id, token, followId) => {
     return (dispatch) => {
         dispatch(request());
@@ -125,6 +130,7 @@ export const followUser = (id, token, followId) => {
     function failure(error) { return { type: userConstants.FOLLOW_USER_FAILURE, error } };
 }
 
+// Unfollow User
 export const unFollowUser = (id, token, unfollowId) => {
     return (dispatch) => {
         dispatch(request());

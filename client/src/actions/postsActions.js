@@ -1,5 +1,6 @@
 import { postsConstants } from "../constants/postsConsts";
 
+// Get All Posts
 export const getPosts = () => {
     return (dispatch) => {
         dispatch(request());
@@ -24,7 +25,7 @@ export const getPosts = () => {
     function failure(error) { return { type: postsConstants.FETCH_POSTS_FAILURE, error } };
 };
 
-
+// Create Post
 export const createPost = (id, token, post) => {
     return (dispatch) => {
         dispatch(request());
@@ -50,6 +51,7 @@ export const createPost = (id, token, post) => {
     function failure(error) { return { type: postsConstants.CREATE_POST_FAILURE, error } };
 };
 
+// Posts By User
 export const postsByUser = (id, token) => {
     return (dispatch) => {
         dispatch(request());
@@ -75,6 +77,7 @@ export const postsByUser = (id, token) => {
     function failure(error) { return { type: postsConstants.FETCH_USER_POSTS_FAILURE, error } };
 };
 
+// Delete Post
 export const deletePost = (id, token) => {
     return (dispatch) => {
         dispatch(request());
@@ -100,6 +103,7 @@ export const deletePost = (id, token) => {
     function failure(error) { return { type: postsConstants.DELETE_POST_FAILURE, error } };
 };
 
+// Update Post
 export const updatePost = (postId, token, post) => {
     return (dispatch) => {
         dispatch(request());
@@ -125,7 +129,7 @@ export const updatePost = (postId, token, post) => {
     function failure(error) { return { type: postsConstants.UPDATE_POST_FAILURE, error } };
 };
 
-
+// Like Post
 export const likePost = (userId, token, postId) => {
     return (dispatch) => {
         dispatch(request());
@@ -152,6 +156,7 @@ export const likePost = (userId, token, postId) => {
     function failure(error) { return { type: postsConstants.LIKE_POST_FAILURE, error } };
 };
 
+// Unlike Post
 export const unlikePost = (userId, token, postId) => {
     return (dispatch) => {
         dispatch(request());

@@ -4,7 +4,7 @@ const _ = require('lodash'); // module to extend and merge the changes that came
 const formidable = require('formidable');
 const fs = require('fs');
 
-
+// Get User
 exports.userById = (req, res, next, id) => {
     User.findById(id)
         .populate('following', '_id name')
@@ -20,6 +20,7 @@ exports.userById = (req, res, next, id) => {
         })
 };
 
+// Has Authorization
 exports.hasAuthorization = (req, res, next) => {
     const authorized = req.profile && req.auth && req.profile._id === req.auth._id;
     if (!authorized) {
@@ -30,11 +31,13 @@ exports.hasAuthorization = (req, res, next) => {
     next();
 };
 
+// Get All Users
 exports.getUsers = async (req, res) => {
     const users = await User.find().select('_id name email updatedAt createdAt');
     res.send(users);
 };
 
+// Get User
 exports.getUser = async (req, res) => {
     req.profile.hashed_password = undefined;
     req.profile.salt = undefined;
@@ -42,6 +45,7 @@ exports.getUser = async (req, res) => {
     return await res.status(200).json(req.profile);
 };
 
+// Update User
 exports.updateUser = (req, res, next) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
@@ -72,6 +76,7 @@ exports.updateUser = (req, res, next) => {
     });
 }
 
+// Delete User
 exports.deleteUser = (req, res) => {
     const user = req.profile;
     user.remove((err) => {
@@ -87,6 +92,7 @@ exports.deleteUser = (req, res) => {
     });
 };
 
+// User Photo
 exports.userPhoto = (req, res, next) => {
     const user = req.profile;
     if (user.photo.data) {
@@ -96,6 +102,7 @@ exports.userPhoto = (req, res, next) => {
     next();
 };
 
+// Add Following
 exports.addFollowing = (req, res, next) => {
     User.findByIdAndUpdate(
         req.body.id,
@@ -110,6 +117,7 @@ exports.addFollowing = (req, res, next) => {
         })
 };
 
+// Add Follower
 exports.addFollower = (req, res, next) => {
     User.findByIdAndUpdate(
         req.body.followId,
@@ -130,6 +138,7 @@ exports.addFollower = (req, res, next) => {
         });
 };
 
+// Remove Following
 exports.removeFollowing = (req, res, next) => {
 
     User.findByIdAndUpdate(
@@ -146,6 +155,7 @@ exports.removeFollowing = (req, res, next) => {
 
 };
 
+// Remove Follower
 exports.removeFollower = (req, res) => {
     User.findByIdAndUpdate(
         req.body.unfollowId,
@@ -166,6 +176,7 @@ exports.removeFollower = (req, res) => {
         });
 };
 
+// Find People
 exports.findPeople = (req, res) => {
     let following = req.profile.following;
     following.push(req.profile._id);
