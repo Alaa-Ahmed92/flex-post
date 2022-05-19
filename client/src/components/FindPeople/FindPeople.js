@@ -10,9 +10,10 @@ import './FindPeople.css';
 const FindPeople = (props) => {
     const [peopleValues, setPeopleValues] = useState([]);
     const { people, findPeople } = props;
+    const jwt = isAuthenticated();
 
     useEffect(() => {
-        findPeople(isAuthenticated().user._id, isAuthenticated().token)
+        findPeople(jwt && jwt.user._id, jwt && jwt.token)
     }, []);
 
     function followingMsg(user) {
