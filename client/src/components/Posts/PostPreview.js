@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { HeartFillIcon, KebabHorizontalIcon, HeartIcon, GitCompareIcon, CommentDiscussionIcon, GlobeIcon } from '@primer/octicons-react';
 import './style.css';
 import moment from 'moment';
 import {
     DropdownButton,
     Dropdown
 } from 'react-bootstrap';
-import { Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import defaultImg from '../../assets/images/profile-pic.png';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { connect } from 'react-redux';
-import EditPost from './EditPost';
 import { likePost, unlikePost } from '../../actions/postsActions';
 import SeeMore from '../SeeMore/SeeMore';
 import Comments from '../Comments/Comments';
+import {
+    LightBulbIcon,
+    PencilAltIcon,
+    BanIcon,
+    TrashIcon,
+    DotsHorizontalIcon,
+    GlobeIcon,
+    HeartIcon,
+    AnnotationIcon,
+    ShareIcon
+} from '@heroicons/react/outline';
+import DeletePost from '../Modals/DeletePost';
+import EditPost from '../Modals/EditPost';
 
 const PostPreview = (props) => {
 
@@ -93,14 +103,16 @@ const PostPreview = (props) => {
                         </div>
                         <div className='namePlace'>
                             <Link to={`/user/${post.postedBy._id}`}>{post.postedBy.name}</Link>
-                            <span className='postTime'><GlobeIcon size={14} /> <span>{timestampString}</span></span>
+                            <span className='postTime'><GlobeIcon /> <span>{timestampString}</span></span>
                         </div>
                     </div>
                     {isAuthenticated().user._id === post.postedBy._id && (
                         <div className='postActions'>
-                            <DropdownButton title={<KebabHorizontalIcon size={18} />} id="dropdown-menu-align-end">
-                                <Dropdown.Item eventKey="1" onClick={showEditModal}>Edit</Dropdown.Item>
-                                <Dropdown.Item eventKey="2" onClick={showModal}>Delete</Dropdown.Item>
+                            <DropdownButton title={<DotsHorizontalIcon />} className="dropdown-menu-lg-end" id="dropdown-menu-align-end">
+                                <Dropdown.Item eventKey="1"><LightBulbIcon /> <span>Pin Post</span></Dropdown.Item>
+                                <Dropdown.Item eventKey="2" onClick={showEditModal}><PencilAltIcon /> <span>Edit Post</span></Dropdown.Item>
+                                <Dropdown.Item eventKey="3"><BanIcon /> <span>Turn Off Comments</span></Dropdown.Item>
+                                <Dropdown.Item eventKey="4" onClick={showModal}><TrashIcon /> <span>Delete Post</span></Dropdown.Item>
                             </DropdownButton>
                         </div>
                     )}
@@ -115,7 +127,7 @@ const PostPreview = (props) => {
                     <button className={`${values.like ? 'like' : 'unlike'}`} onClick={() => clickLike()}>
                         <h6>Like</h6>
                         <div className='countIcon'>
-                            {values.like ? <HeartFillIcon fill='#FC5D78' size={16} /> : <HeartIcon size={16} />}
+                            {values.like ? <HeartIcon fill='#FC5D78' /> : <HeartIcon />}
                             <span className='countNum'>{post.likes && post.likes.length}</span>
                         </div>
                     </button>
@@ -124,7 +136,7 @@ const PostPreview = (props) => {
                     <button onClick={() => toggleCommentArea()}>
                         <h6>Comment</h6>
                         <div className='countIcon'>
-                            <CommentDiscussionIcon size={16} />
+                            <AnnotationIcon />
                             <span className='countNum'>{post.comments.length}</span>
                         </div>
                     </button>
@@ -133,22 +145,23 @@ const PostPreview = (props) => {
                     <button>
                         <h6>Share</h6>
                         <div className='countIcon'>
-                            <GitCompareIcon size={16} />
+                            <ShareIcon size={18} />
                             <span className='countNum'>0</span>
                         </div>
                     </button>
                 </div>
             </div>
             {commentArea && <Comments post={post} />}
-            <Modal
-                title="Delete Post"
+            <DeletePost
                 visible={deleteModal}
                 onOk={handleOk}
                 onCancel={handleCancel}
-            >
-                <p>Are you sure?</p>
-            </Modal>
-            <EditPost editPostModal={editPostModal} handleEditCancel={handleEditCancel} post={post} />
+            />
+            <EditPost
+                editPostModal={editPostModal}
+                handleEditCancel={handleEditCancel}
+                post={post}
+            />
         </div>
     )
 }

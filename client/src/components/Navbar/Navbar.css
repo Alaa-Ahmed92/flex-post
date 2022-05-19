@@ -1,0 +1,111 @@
+nav {
+    background-color: #00B488;
+}
+
+nav.navbar-light .navbar-nav  {
+    align-items: center;
+}
+
+nav.navbar-light .navbar-nav .nav-link {
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 3px 12px;
+}
+
+nav.navbar-light .navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, .1) !important;
+}
+
+nav.navbar-light .navbar-brand img {
+    width: 50px;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown {
+    margin-left: 10px;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .nav-link {
+    border-radius: 50%;
+    padding: 6px;
+    background: rgba(255, 255, 255, .2) !important;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .nav-link:hover {
+    background: rgba(255, 255, 255, .3) !important;
+}
+
+nav.navbar-light .navbar-nav .dropdown-menu {
+    padding: 0.25rem;
+    border: none;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+    width: 14rem;
+    right: 0;
+    left: auto;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown a img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown a:after {
+    display: none;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .dropdown-item {
+    padding: 0.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .dropdown-item:hover,
+nav.navbar-light .navbar-nav .nav-item.dropdown .dropdown-item:active {
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .dropdown-item span {
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .userProfile .navUserInfo {
+    margin-left: 10px;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .userProfile .navUserInfo h6 {
+    margin: 0;
+    color: #00B488;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .userProfile .navUserInfo span {
+    font-size: 14px;
+    margin-left: 0;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown svg {
+    width: 22px;
+    color: #9ca3af;
+}
+
+nav.navbar-light .navbar-nav .nav-item .dropdown-item:hover svg {
+    color: #6b7280;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .userProfile .navImgInfo {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+nav.navbar-light .navbar-nav .nav-item.dropdown .userProfile .navImgInfo img {
+    width: 100%;
+    height: auto;
+    border-radius: unset;
+}

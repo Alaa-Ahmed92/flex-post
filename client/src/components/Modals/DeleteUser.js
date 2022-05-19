@@ -5,11 +5,15 @@ import {
 } from 'react-bootstrap';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { useNavigate } from 'react-router-dom';
-import { TrashIcon } from '@primer/octicons-react';
+import {
+    TrashIcon,
+    ExclamationIcon
+} from '@heroicons/react/outline';
+import './style.css';
 
 const DeleteUser = (props) => {
     const [show, setShow] = useState(false);
-    const { user, deleteUser } = props;
+    const { user, deleteUser, className } = props;
     const navigate = useNavigate();
 
     const handleClose = () => setShow(false);
@@ -24,24 +28,27 @@ const DeleteUser = (props) => {
 
     return (
         <>
-            <button onClick={handleShow}><TrashIcon size={18} /></button>
+            <button className={className} onClick={handleShow}><TrashIcon /> <span>Delete Profile</span></button>
             <Modal
+                size="sm"
                 show={show}
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                className={'deleteUserModal'}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete Your Account</Modal.Title>
-                </Modal.Header>
                 <Modal.Body>
-                    Are you sure you want to delete your account?
+                    <div className='bodyIcon'>
+                        <ExclamationIcon />
+                    </div>
+                    <h6>Delete Account</h6>
+                    <p>You're going to delete your account. Are you sure?</p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        No, Keep it.
                     </Button>
-                    <Button variant="primary" onClick={confirmDelete}>Yes, Delete</Button>
+                    <Button variant="danger" onClick={confirmDelete}>Yes, Delete!</Button>
                 </Modal.Footer>
             </Modal>
         </>

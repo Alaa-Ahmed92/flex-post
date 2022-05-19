@@ -9,25 +9,28 @@ import CreatePost from './../components/Posts/CreatePost';
 import PostPreview from '../components/Posts/PostPreview';
 import './styles.css';
 import { Link, useParams } from 'react-router-dom';
-import DeleteUser from '../components/DeleteUser/DeleteUser';
+import DeleteUser from '../components/Modals/DeleteUser';
 import defaultImg from '../assets/images/profile-pic.png';
 import { message } from 'antd';
-import {
-    BriefcaseIcon,
-    HomeIcon,
-    LocationIcon,
-    ClockIcon,
-    PencilIcon
-} from '@primer/octicons-react';
 import Followers from '../components/FollowGrid/Followers';
 import Following from '../components/FollowGrid/Following';
+import {
+    DropdownButton
+} from 'react-bootstrap';
+import {
+    PencilAltIcon,
+    DotsHorizontalIcon,
+    BriefcaseIcon,
+    LocationMarkerIcon,
+    HomeIcon,
+    ClockIcon
+} from '@heroicons/react/outline';
 
 
 const Profile = (props) => {
     const { following, user, getUser, deleteUser, postsByUser, userPosts, deletePost, followUser, unFollowUser } = props;
     const { userId } = useParams();
     const photoUrl = user && user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}` : defaultImg;
-
 
     useEffect(() => {
         getUser(userId, isAuthenticated().token);
@@ -48,8 +51,10 @@ const Profile = (props) => {
         if (user && isAuthenticated().user._id == user._id) {
             return (
                 <div className='userAuth'>
-                    <Link to={`/user/edit/${user._id}`}><PencilIcon size={18} /></Link>
-                    <DeleteUser user={user} deleteUser={deleteUser} />
+                    <DropdownButton title={<DotsHorizontalIcon />} id="dropdown-menu-align-end">
+                        <Link className='dropdown-item' to={`/user/edit/${user._id}`}><PencilAltIcon /> <span>Edit Profile</span></Link>
+                        <DeleteUser className='dropdown-item' user={user} deleteUser={deleteUser} />
+                    </DropdownButton>
                 </div>
             )
         } else {
@@ -88,10 +93,10 @@ const Profile = (props) => {
                                 </div>
                             </div>
                             <div className='userListInfo'>
-                                {user && user.job && <div className='job'><BriefcaseIcon size={18} /> <span>Work as</span>{user.job}</div>}
-                                {user && user.currentCity && <div className='currentCity'><HomeIcon size={18} /> <span>Lives in</span>{user.currentCity}</div>}
-                                {user && user.hometown && <div className='hometown'><LocationIcon size={18} /> <span>From</span>{user.hometown}</div>}
-                                <div className='date'><ClockIcon size={18} /> <span>Joined</span>{user && new Date(user.createdAt).toDateString()}</div>
+                                {user && user.job && <div className='job'><BriefcaseIcon /> <span>Work as</span>{user.job}</div>}
+                                {user && user.currentCity && <div className='currentCity'><LocationMarkerIcon /> <span>Lives in</span>{user.currentCity}</div>}
+                                {user && user.hometown && <div className='hometown'><HomeIcon /> <span>From</span>{user.hometown}</div>}
+                                <div className='date'><ClockIcon /> <span>Joined</span>{user && new Date(user.createdAt).toDateString()}</div>
                             </div>
                         </div>
                         {user && user.followers.length !== 0 && <Followers followers={user.followers} />}
