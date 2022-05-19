@@ -12,8 +12,6 @@ import { logoutUser } from '../../actions/loginActions';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { getUserSelector } from '../../selectors/userSelector';
 import defaultImg from '../../assets/images/profile-pic.png';
-import brandLogo from '../../assets/images/logo.png';
-import whiteBrandLogo from '../../assets/images/wh-logo.png';
 import brandWhiteLogo from '../../assets/images/logo-white.png';
 import {
     LogoutIcon
@@ -22,7 +20,7 @@ import {
 const NavbarMenu = (props) => {
     const { logoutUser } = props;
     const jwt = isAuthenticated();
-    const photoUrl = jwt.user && jwt.user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}?${new Date().getTime()}` : defaultImg;
+    const photoUrl = jwt && jwt.user && jwt.user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}?${new Date().getTime()}` : defaultImg;
 
     return (
         <Navbar expand="lg">

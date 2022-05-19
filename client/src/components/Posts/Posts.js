@@ -11,7 +11,7 @@ const Posts = (props) => {
 
     useEffect(() => {
         getPosts();
-    }, [getPosts]);
+    }, [posts]);
 
     return (
         <div className='posts-list'>
