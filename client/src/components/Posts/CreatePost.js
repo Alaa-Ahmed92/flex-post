@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './style.css';
 import { isAuthenticated } from '../../helpers/auth-helper';
-import defaultImg from '../../assets/images/profile-pic.png';
 import { Link } from 'react-router-dom';
 import { createPost } from '../../actions/postsActions';
 import { connect } from 'react-redux';
@@ -64,7 +63,7 @@ const CreatePost = (props) => {
                     <Link to={`/user/${authUser && authUser.user._id}`}>
                         <img
                             src={`${process.env.REACT_APP_API_URL}/user/photo/${authUser && authUser.user._id}?${new Date().getTime()}`}
-                            onError={i => i.target.src = defaultImg}
+                            onError={i => i.target.src = `/user/photo/defaultphoto`}
                         />
                     </Link>
                 </div>

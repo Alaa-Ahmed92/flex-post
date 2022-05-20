@@ -11,7 +11,8 @@ const {
     addFollower,
     removeFollowing,
     removeFollower,
-    findPeople
+    findPeople,
+    defaultPhoto
 } = require('../controllers/userController');
 const { requireSignin } = require('../controllers/authController');
 
@@ -23,7 +24,7 @@ router.param("userId", userById);
 
 router.get("/user/:userId", requireSignin, getUser);
 
-router.get("/user/photo/:userId", userPhoto);
+router.get("/user/photo/:userId", userPhoto, defaultPhoto);
 
 router.put("/users/user/follow", requireSignin, addFollowing, addFollower);
 router.put("/users/user/unfollow", requireSignin, removeFollowing, removeFollower);

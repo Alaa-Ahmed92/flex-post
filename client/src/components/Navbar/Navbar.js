@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/loginActions';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { getUserSelector } from '../../selectors/userSelector';
-import defaultImg from '../../assets/images/profile-pic.png';
 import brandWhiteLogo from '../../assets/images/logo-white.png';
 import {
     LogoutIcon
@@ -20,7 +19,7 @@ import {
 const NavbarMenu = (props) => {
     const { logoutUser } = props;
     const jwt = isAuthenticated();
-    const photoUrl = jwt && jwt.user && jwt.user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}?${new Date().getTime()}` : defaultImg;
+    const photoUrl = jwt && jwt.user && jwt.user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
 
     return (
         <Navbar expand="lg">
@@ -33,10 +32,10 @@ const NavbarMenu = (props) => {
                     <Nav className="ms-auto">
                         <Link className='nav-link' to="/">Home</Link>
                         {jwt ? (
-                            <NavDropdown title={<img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = defaultImg} />}>
+                            <NavDropdown title={<img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />}>
                                 <Link className='dropdown-item userProfile' to={`/user/${jwt.user._id}`}>
                                     <div className='navImgInfo'>
-                                        <img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = defaultImg} />
+                                        <img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />
                                     </div>
                                     <div className='navUserInfo'>
                                         <h6>{jwt.user.name}</h6>

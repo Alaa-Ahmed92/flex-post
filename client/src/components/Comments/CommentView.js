@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import defaultImg from '../../assets/images/profile-pic.png';
 import moment from 'moment';
 import './styles.css';
 
@@ -28,7 +27,9 @@ const CommentView = (props) => {
                     <Link to={`/user/${comment.postedBy._id}`}>
                         <img
                             src={`${process.env.REACT_APP_API_URL}/user/photo/${comment.postedBy._id}`}
-                            onError={i => i.target.src = defaultImg} />
+                            onError={i => i.target.src = `/user/photo/defaultphoto`}
+                            alt={comment.postedBy.name}
+                        />
                     </Link>
                 </div>
                 <div className='commentBox'>

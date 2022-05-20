@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { findPeople } from '../../actions/profileActions';
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../../helpers/auth-helper';
-import defaultImg from '../../assets/images/profile-pic.png';
 import { message } from 'antd';
 import './FindPeople.css';
 
@@ -55,8 +54,8 @@ const FindPeople = (props) => {
                         <Link to={`/user/${user._id}`} className='userCardInfo'>
                             <img
                                 className='img-fluid'
-                                src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
-                                onError={i => i.target.src = defaultImg}
+                                src={`/user/photo/${user._id}`}
+                                onError={i => i.target.src = `/user/photo/defaultphoto`}
                             />
                             <h5>{user.name}</h5>
                         </Link>

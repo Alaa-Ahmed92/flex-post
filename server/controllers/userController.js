@@ -3,6 +3,8 @@ const _ = require('lodash'); // module to extend and merge the changes that came
 // The formidable will allow the server to read the multipart form data and give us access to the fields and the file, if there are any.
 const formidable = require('formidable');
 const fs = require('fs');
+const profileImage = fs.readFileSync('F:/Hard-Study/social-mern-app/client/src/assets/images/profile-pic.png');
+// import profileImage from './../../client/src/assets/images/profile-pic.png';
 
 // Get User
 exports.userById = (req, res, next, id) => {
@@ -98,9 +100,13 @@ exports.userPhoto = (req, res, next) => {
     if (user.photo.data) {
         res.set("Content-Type", user.photo.contentType);
         return res.send(user.photo.data);
-    };
+    }
     next();
 };
+
+exports.defaultPhoto = (req, res) => {
+    return res.send(profileImage)
+}
 
 // Add Following
 exports.addFollowing = (req, res, next) => {
