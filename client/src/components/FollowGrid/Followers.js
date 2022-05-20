@@ -1,7 +1,6 @@
 import React from 'react';
 import './FollowGrid.css';
 import { Link } from 'react-router-dom';
-import defaultImg from '../../assets/images/profile-pic.png';
 
 const Followers = (props) => {
     const { followers } = props;
@@ -21,7 +20,8 @@ const Followers = (props) => {
                                 <img
                                     className='img-fluid'
                                     src={`${process.env.REACT_APP_API_URL}/user/photo/${profile._id}`}
-                                    onError={i => i.target.src = defaultImg}
+                                    onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                    alt={profile.name}
                                 />
                                 <span>{profile.name}</span>
                             </Link>

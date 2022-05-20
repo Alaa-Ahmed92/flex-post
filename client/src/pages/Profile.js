@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUser, deleteUser, followUser, unFollowUser } from './../actions/profileActions';
 import { postsByUser, deletePost } from './../actions/postsActions';
-import { isAuthenticated, read } from '../helpers/auth-helper';
+import { isAuthenticated } from '../helpers/auth-helper';
 import { getUserSelector } from '../selectors/userSelector';
 import { getPostsSelector } from '../selectors/postsSelector';
 import CreatePost from './../components/Posts/CreatePost';
@@ -10,7 +10,6 @@ import PostPreview from '../components/Posts/PostPreview';
 import './styles.css';
 import { Link, useParams } from 'react-router-dom';
 import DeleteUser from '../components/Modals/DeleteUser';
-import defaultImg from '../assets/images/profile-pic.png';
 import { message } from 'antd';
 import Followers from '../components/FollowGrid/Followers';
 import Following from '../components/FollowGrid/Following';
@@ -30,7 +29,7 @@ import {
 const Profile = (props) => {
     const { following, user, getUser, deleteUser, postsByUser, userPosts, deletePost, followUser, unFollowUser } = props;
     const { userId } = useParams();
-    const photoUrl = user && user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}` : defaultImg;
+    // const photoUrl = user && user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
 
     useEffect(() => {
         getUser(userId, isAuthenticated().token);
@@ -48,7 +47,7 @@ const Profile = (props) => {
     }
 
     function renderAuthUser() {
-        if (user && isAuthenticated().user._id == user._id) {
+        if (user && isAuthenticated().user._id === user._id) {
             return (
                 <div className='userAuth'>
                     <DropdownButton title={<DotsHorizontalIcon />} id="dropdown-menu-align-end">
@@ -76,7 +75,10 @@ const Profile = (props) => {
                     <div className='col-md-10'>
                         <div className='profileHeader'>
                             <div className='headImg'>
-                                <img src={photoUrl} alt={user && user.name} onError={i => i.target.src = defaultImg} />
+                                <img src={user && user._id && `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}`}
+                                    alt={user && user.name}
+                                    onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                />
                             </div>
                             <div className='headUserInfo'>
                                 <h2>{user && user.name} {user && user.nickname && <span>({user.nickname})</span>}</h2>
@@ -104,7 +106,7 @@ const Profile = (props) => {
 
                     </div>
                     <div className='col-md-6'>
-                        {user && isAuthenticated().user._id == user._id && <CreatePost />}
+                        {user && isAuthenticated().user._id === user._id && <CreatePost />}
                         {userPosts && userPosts.length !== 0 ? userPosts.map(post => (
                             <PostPreview post={post} key={post._id} deletePost={deletePost} />
                         )) : <div style={{ fontSize: '20px' }}>No Posts Yet.</div>}

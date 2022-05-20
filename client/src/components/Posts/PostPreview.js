@@ -6,7 +6,6 @@ import {
     Dropdown
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import defaultImg from '../../assets/images/profile-pic.png';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { connect } from 'react-redux';
 import { likePost, unlikePost } from '../../actions/postsActions';
@@ -33,6 +32,7 @@ const PostPreview = (props) => {
     const [commentArea, setcommentArea] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [editPostModal, setEditPostModal] = useState(false);
+    const photoUrl = post && post.postedBy._id ? `${process.env.REACT_APP_API_URL}/user/photo/${post.postedBy._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
     const [values, setValues] = useState({
         like: ''
     })
@@ -99,7 +99,15 @@ const PostPreview = (props) => {
                 <div className='postOptions'>
                     <div className='postInfo'>
                         <div className='imgPlace'>
-                            <Link to={`/user/${post.postedBy._id}`}><img className='img-fluid' src={`${process.env.REACT_APP_API_URL}/user/photo/${post.postedBy._id}?${new Date().getTime()}`} onError={i => i.target.src = defaultImg} /></Link>
+                            <Link
+                                to={`/user/${post.postedBy._id}`}>
+                                <img
+                                    className='img-fluid'
+                                    src={photoUrl}
+                                    onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                    alt={post.postedBy.name}
+                                />
+                            </Link>
                         </div>
                         <div className='namePlace'>
                             <Link to={`/user/${post.postedBy._id}`}>{post.postedBy.name}</Link>
@@ -119,7 +127,7 @@ const PostPreview = (props) => {
                 </div>
                 <div className='postBody'>
                     <SeeMore>{post.body}</SeeMore>
-                    {post.photo && <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}?${new Date().getTime()}`} />}
+                    {post.photo && <img alt="postPhoto" src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}?${new Date().getTime()}`} />}
                 </div>
             </div>
             <div className='postFooter'>

@@ -201,7 +201,6 @@ export const addComment = (userId, token, postId, comment) => {
                 if (data.error) {
                     dispatch(failure(data.error));
                 } else {
-                    console.log(data);
                     dispatch(success(data));
                 }
             })

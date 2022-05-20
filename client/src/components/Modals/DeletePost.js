@@ -4,7 +4,6 @@ import {
     Button
 } from 'react-bootstrap';
 import {
-    TrashIcon,
     ExclamationIcon
 } from '@heroicons/react/outline';
 import './style.css';

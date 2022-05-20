@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './styles.css';
-import defaultImg from '../../assets/images/profile-pic.png';
 import { Link } from 'react-router-dom';
 import {
     Form,
@@ -45,7 +44,7 @@ const CreateComment = (props) => {
                     <Link to={`/user/${jwt.user._id}`}>
                         <img
                             src={`${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}`}
-                            onError={i => i.target.src = defaultImg}
+                            onError={i => i.target.src = `/user/photo/defaultphoto`}
                         />
                     </Link>
                 </div>
