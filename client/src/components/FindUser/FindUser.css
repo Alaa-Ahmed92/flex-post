@@ -1,0 +1,93 @@
+.findUser {
+    position: relative;
+}
+
+.findUser input {
+    width: 400px;
+    border-radius: 6px;
+    box-shadow: none;
+    border: none;
+}
+
+.findUser input:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.findUser .userListDropdown {
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+    border-radius: 6px;
+    padding: 0.25rem;
+    border: none;
+    z-index: 9;
+    max-height: 250px;
+    overflow-y: auto;
+    display: none;
+    margin-top: 3px;
+}
+
+.findUser .userListDropdown.show {
+    display: block;
+}
+
+.findUser .userListDropdown {}
+
+.findUser .userListDropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.findUser .userListDropdown ul li {}
+
+.findUser .userListDropdown ul li a {
+    padding: 0.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.findUser .userListDropdown ul li.noFound {
+    padding-left: 0.5rem;
+}
+
+.findUser .userListDropdown ul li a:hover {
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+.findUser .userListDropdown ul li a img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.findUser .userListDropdown ul li a span {color: #333;}
+
+.findUser .userListDropdown {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
+
+.findUser {}
