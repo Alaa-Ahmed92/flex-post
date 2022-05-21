@@ -15,6 +15,7 @@ import brandWhiteLogo from '../../assets/images/logo-white.png';
 import {
     LogoutIcon
 } from '@heroicons/react/outline';
+import FindUser from '../FindUser/FindUser';
 
 const NavbarMenu = (props) => {
     const { logoutUser } = props;
@@ -28,6 +29,7 @@ const NavbarMenu = (props) => {
                     <img src={brandWhiteLogo} alt="Flux Post" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <FindUser />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Link className='nav-link' to="/">Home</Link>

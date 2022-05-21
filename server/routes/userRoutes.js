@@ -16,7 +16,7 @@ const {
 } = require('../controllers/userController');
 const { requireSignin } = require('../controllers/authController');
 
-router.get('/users', requireSignin, getUsers);
+router.get('/users', getUsers);
 
 router.get('/users/findPeople/:userId', requireSignin, findPeople);
 

@@ -2,6 +2,31 @@ import { userConstants } from "../constants/userConsts";
 import { logoutUser } from './loginActions';
 import { updateUserLocal, checkFollow } from '../helpers/auth-helper';
 
+// Get All Posts
+export const getUsers = () => {
+    return (dispatch) => {
+        dispatch(request());
+        fetch(`${process.env.REACT_APP_API_URL}/users`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    dispatch(failure(data.error));
+                } else {
+                    dispatch(success(data));
+                }
+            })
+    }
+    function request() { return { type: userConstants.FETCH_USERS_REQUEST } };
+    function success(users) { return { type: userConstants.FETCH_USERS_SUCCESS, users } };
+    function failure(error) { return { type: userConstants.FETCH_USERS_FAILURE, error } };
+};
+
 // Get User
 export const getUser = (id, token) => {
     return (dispatch) => {
