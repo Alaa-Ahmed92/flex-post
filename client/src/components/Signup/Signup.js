@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/registerActions';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const SignupForm = (props) => {
     const [user, setUser] = useState('');
@@ -66,6 +67,11 @@ const SignupForm = (props) => {
             </Button>
         </Form>
     )
+};
+
+SignupForm.propTypes = {
+    register: PropTypes.object,
+    registerUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

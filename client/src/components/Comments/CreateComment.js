@@ -8,6 +8,7 @@ import { isAuthenticated } from '../../helpers/auth-helper';
 import {
     PaperAirplaneIcon
 } from '@heroicons/react/outline';
+import PropTypes from 'prop-types';
 
 const CreateComment = (props) => {
     const { addComment, post } = props;
@@ -67,6 +68,11 @@ const CreateComment = (props) => {
             </Form>
         </div>
     )
-}
+};
+
+CreateComment.propTypes = {
+    post: PropTypes.object.isRequired,
+    addComment: PropTypes.func.isRequired
+};
 
 export default CreateComment;

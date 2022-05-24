@@ -13,6 +13,7 @@ import DeleteUser from '../components/Modals/DeleteUser';
 import { message } from 'antd';
 import Followers from '../components/FollowGrid/Followers';
 import Following from '../components/FollowGrid/Following';
+import PropTypes from 'prop-types';
 import {
     DropdownButton
 } from 'react-bootstrap';
@@ -115,6 +116,18 @@ const Profile = (props) => {
             </div>
         </div>
     )
+};
+
+Profile.propTypes = {
+    user: PropTypes.object,
+    deletePost: PropTypes.func.isRequired,
+    deleteUser: PropTypes.func.isRequired,
+    followUser: PropTypes.func.isRequired,
+    getUser: PropTypes.func.isRequired,
+    postsByUser: PropTypes.func.isRequired,
+    unFollowUser: PropTypes.func.isRequired,
+    following: PropTypes.bool,
+    userPosts: PropTypes.array,
 };
 
 const mapStateToProps = state => ({

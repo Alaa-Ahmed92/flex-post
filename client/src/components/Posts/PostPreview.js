@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { likePost, unlikePost } from '../../actions/postsActions';
 import SeeMore from '../SeeMore/SeeMore';
 import Comments from '../Comments/Comments';
+import PropTypes from 'prop-types';
 import {
     LightBulbIcon,
     PencilAltIcon,
@@ -172,7 +173,15 @@ const PostPreview = (props) => {
             />
         </div>
     )
-}
+};
+
+PostPreview.propTypes = {
+    deletePost: PropTypes.func.isRequired,
+    likePost: PropTypes.func.isRequired,
+    unlikePost: PropTypes.func.isRequired,
+    post: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({});
 
 export default connect(mapStateToProps, { likePost, unlikePost })(PostPreview);

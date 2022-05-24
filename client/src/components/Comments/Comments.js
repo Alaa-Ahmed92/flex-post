@@ -5,6 +5,7 @@ import './styles.css';
 import { addComment } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import DividerWithTitle from '../antdDivider/DividerWithTitle';
+import PropTypes from 'prop-types';
 
 const Comments = (props) => {
     const { post, addComment } = props;
@@ -19,6 +20,11 @@ const Comments = (props) => {
             ))}
         </div>
     )
+};
+
+Comments.propTypes = {
+    post: PropTypes.object.isRequired,
+    addComment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({});

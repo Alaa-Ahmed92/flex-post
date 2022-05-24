@@ -7,6 +7,7 @@ import {
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { updatePost } from '../../actions/postsActions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './style.css';
 
 const EditPost = (props) => {
@@ -104,6 +105,13 @@ const EditPost = (props) => {
             </Form>
         </Modal>
     )
+};
+
+EditPost.propTypes = {
+    editPostModal: PropTypes.bool.isRequired,
+    handleEditCancel: PropTypes.func.isRequired,
+    updatePost: PropTypes.func.isRequired,
+    post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({});

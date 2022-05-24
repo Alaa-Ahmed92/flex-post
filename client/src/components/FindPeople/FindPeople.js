@@ -4,6 +4,7 @@ import { findPeople } from '../../actions/profileActions';
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { message } from 'antd';
+import PropTypes from 'prop-types';
 import './FindPeople.css';
 
 const FindPeople = (props) => {
@@ -67,6 +68,11 @@ const FindPeople = (props) => {
             </div>
         </div>
     )
+};
+
+FindPeople.propTypes = {
+    findPeople: PropTypes.func.isRequired,
+    people: PropTypes.array
 };
 
 const mapStateToProps = (state) => ({

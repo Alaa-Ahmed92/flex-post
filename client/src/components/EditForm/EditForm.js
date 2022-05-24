@@ -10,6 +10,7 @@ import { isAuthenticated } from '../../helpers/auth-helper';
 import { getUser, updateUser } from '../../actions/profileActions';
 import { getUserSelector } from '../../selectors/userSelector';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './EditForm.css';
 
 const EditForm = (props) => {
@@ -202,6 +203,14 @@ const EditForm = (props) => {
         </Form>
     )
 };
+
+EditForm.propTypes = {
+    error: PropTypes.string,
+    getUser: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
     updated: state.user.updated,
     error: state.user.error,

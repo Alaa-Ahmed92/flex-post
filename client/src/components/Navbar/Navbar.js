@@ -12,6 +12,7 @@ import { logoutUser } from '../../actions/loginActions';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { getUserSelector } from '../../selectors/userSelector';
 import brandWhiteLogo from '../../assets/images/logo-white.png';
+import PropTypes from 'prop-types';
 import {
     LogoutIcon
 } from '@heroicons/react/outline';
@@ -58,8 +59,12 @@ const NavbarMenu = (props) => {
     )
 };
 
+NavbarMenu.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    user: PropTypes.object,
+};
+
 const mapStateToProps = state => ({
-    login: state.login,
     user: getUserSelector(state)
 });
 
