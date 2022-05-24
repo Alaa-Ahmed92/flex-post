@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DividerWithTitle component Should render the same with given props 1`] = `
+<Divider
+  orientation="left"
+  orientationMargin="0"
+>
+  Comments
+</Divider>
+`;
