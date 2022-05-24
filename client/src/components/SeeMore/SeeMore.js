@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './SeeMore.css';
 
 const SeeMore = ({ children }) => {
@@ -26,6 +27,10 @@ const SeeMore = ({ children }) => {
             </span>
         </p>
     )
-}
+};
+
+SeeMore.propTypes = {
+    children: PropTypes.string.isRequired
+};
 
 export default SeeMore;

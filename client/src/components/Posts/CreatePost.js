@@ -4,6 +4,7 @@ import { isAuthenticated } from '../../helpers/auth-helper';
 import { Link } from 'react-router-dom';
 import { createPost } from '../../actions/postsActions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
     PhotographIcon
 } from '@heroicons/react/outline';
@@ -99,6 +100,10 @@ const CreatePost = (props) => {
             </Form>
         </div>
     )
+};
+
+CreatePost.propTypes = {
+    createPost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({});

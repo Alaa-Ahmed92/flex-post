@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
     TrashIcon,
     ExclamationIcon
@@ -53,6 +54,12 @@ const DeleteUser = (props) => {
             </Modal>
         </>
     )
+};
+
+DeleteUser.propTypes = {
+    className: PropTypes.string,
+    deleteUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
 };
 
 export default DeleteUser;

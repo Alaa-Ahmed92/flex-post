@@ -1,6 +1,7 @@
 import React from 'react';
 import './FollowGrid.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Following = (props) => {
     const { following } = props;
@@ -31,6 +32,10 @@ const Following = (props) => {
             </div>
         </div>
     )
+};
+
+Following.propTypes = {
+    following: PropTypes.array.isRequired
 };
 
 export default Following;

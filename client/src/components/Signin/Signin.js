@@ -7,11 +7,12 @@ import {
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/loginActions';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const SigninForm = (props) => {
+    const { loginUser, login } = props;
     const [user, setUser] = useState('');
     const [error, setError] = useState('');
-    const { loginUser, login } = props;
     const navigate = useNavigate();
 
     function handleChange(e) {
@@ -60,7 +61,12 @@ const SigninForm = (props) => {
     )
 };
 
-const mapStateToProps = state => ({
+SigninForm.propTypes = {
+    login: PropTypes.object,
+    loginUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
     login: state.login
 });
 

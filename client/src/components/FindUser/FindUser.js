@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUsers } from './../../actions/profileActions';
 import './FindUser.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const FindUser = (props) => {
     const { users, getUsers } = props;
@@ -90,6 +91,11 @@ const FindUser = (props) => {
             </div>
         </div >
     )
+};
+
+FindUser.propTypes = {
+    getUsers: PropTypes.func.isRequired,
+    users: PropTypes.array
 };
 
 const mapStateToProps = state => ({

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 const CommentView = (props) => {
@@ -44,6 +45,10 @@ const CommentView = (props) => {
             </div>
         </div>
     )
-}
+};
+
+CommentView.propTypes = {
+    comment: PropTypes.object.isRequired
+};
 
 export default CommentView;

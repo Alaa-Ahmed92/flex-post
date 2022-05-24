@@ -6,6 +6,7 @@ import { getPostsSelector } from '../../selectors/postsSelector';
 import { getPosts, deletePost } from '../../actions/postsActions';
 import { getUser } from '../../actions/profileActions';
 import PostsList from './PostsList';
+import PropTypes from 'prop-types';
 
 const Posts = (props) => {
     const { posts, getPosts, deletePost } = props;
@@ -24,6 +25,13 @@ const Posts = (props) => {
             />
         </div>
     );
+};
+
+Posts.propTypes = {
+    getUser: PropTypes.func.isRequired,
+    getPosts: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

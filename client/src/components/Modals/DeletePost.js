@@ -6,10 +6,11 @@ import {
 import {
     ExclamationIcon
 } from '@heroicons/react/outline';
+import PropTypes from 'prop-types';
 import './style.css';
 
 const DeletePost = (props) => {
-    const {visible, onCancel, onOk} = props;
+    const { visible, onCancel, onOk } = props;
 
     return (
         <>
@@ -36,6 +37,12 @@ const DeletePost = (props) => {
             </Modal>
         </>
     )
+};
+
+DeletePost.propTypes = {
+    visible: PropTypes.bool.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onOk: PropTypes.func.isRequired,
 };
 
 export default DeletePost;
