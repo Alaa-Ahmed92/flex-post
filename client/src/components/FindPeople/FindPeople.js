@@ -13,7 +13,7 @@ const FindPeople = (props) => {
     const jwt = isAuthenticated();
 
     useEffect(() => {
-        findPeople(jwt && jwt.user._id, jwt && jwt.token)
+        findPeople(jwt && jwt.user && jwt.user._id, jwt && jwt.token)
     }, []);
 
     function followingMsg(user) {

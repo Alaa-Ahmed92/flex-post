@@ -36,12 +36,12 @@ const NavbarMenu = (props) => {
                         <Link className='nav-link' to="/">Home</Link>
                         {jwt ? (
                             <NavDropdown title={<img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />}>
-                                <Link className='dropdown-item userProfile' to={`/user/${jwt.user._id}`}>
+                                <Link className='dropdown-item userProfile' to={`/user/${jwt.user && jwt.user._id}`}>
                                     <div className='navImgInfo'>
                                         <img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />
                                     </div>
                                     <div className='navUserInfo'>
-                                        <h6>{jwt.user.name}</h6>
+                                        <h6>{jwt.user && jwt.user.name}</h6>
                                         <span>View Profile</span>
                                     </div>
                                 </Link>

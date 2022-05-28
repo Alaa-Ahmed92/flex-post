@@ -91,6 +91,7 @@ export const postsReducer = (state = initalState, action) => {
             }
         case postsConstants.LIKE_POST_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 posts: state.posts.map(p => {
                     if (p._id === action.post._id) {
@@ -101,6 +102,7 @@ export const postsReducer = (state = initalState, action) => {
                     }
                     return p;
                 }),
+                error: ''
             }
         case postsConstants.LIKE_POST_FAILURE:
             return {

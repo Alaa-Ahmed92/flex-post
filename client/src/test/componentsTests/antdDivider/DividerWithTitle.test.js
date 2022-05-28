@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import DividerWithTitle from './../../../components/antdDivider/DividerWithTitle';
+import DividerWithTitle from '../../../components/antdDivider/DividerWithTitle';
 
 let props = {
     title: 'Comments'
