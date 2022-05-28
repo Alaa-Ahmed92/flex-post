@@ -61,9 +61,9 @@ const CreatePost = (props) => {
         <div className='createPost userInfo'>
             <Form ref={formEl} onSubmit={addPost}>
                 <div className='imgPlace'>
-                    <Link to={`/user/${authUser && authUser.user._id}`}>
+                    <Link to={`/user/${authUser.user && authUser.user._id}`}>
                         <img
-                            src={`${process.env.REACT_APP_API_URL}/user/photo/${authUser && authUser.user._id}?${new Date().getTime()}`}
+                            src={`${process.env.REACT_APP_API_URL}/user/photo/${authUser.user && authUser.user._id}?${new Date().getTime()}`}
                             onError={i => i.target.src = `/user/photo/defaultphoto`}
                         />
                     </Link>
@@ -73,7 +73,7 @@ const CreatePost = (props) => {
                         onChange={handleChange}
                         name="body"
                         className={className}
-                        placeholder={`What's on your mind, ${authUser && authUser.user.name}?`}
+                        placeholder={`What's on your mind, ${authUser.user && authUser.user.name}?`}
                         value={postValues.body}
                     ></textarea>
                     <div className='custImg'>

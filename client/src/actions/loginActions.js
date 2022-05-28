@@ -4,8 +4,8 @@ import { authenticate } from '../helpers/auth-helper';
 // Login User
 export const loginUser = (user) => {
     return (dispatch) => {
-        dispatch(request(user));
-        fetch(`${process.env.REACT_APP_API_URL}/signin`, {
+        dispatch(request());
+        return fetch(`${process.env.REACT_APP_API_URL}/signin`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -24,7 +24,7 @@ export const loginUser = (user) => {
                 }
             })
     }
-    function request(user) { return { type: loginConstants.LOGIN_REQUEST, user } };
+    function request() { return { type: loginConstants.LOGIN_REQUEST } };
     function success(user) { return { type: loginConstants.LOGIN_SUCCESS, user } };
     function failure(error) { return { type: loginConstants.LOGIN_FAILURE, error } };
 };
