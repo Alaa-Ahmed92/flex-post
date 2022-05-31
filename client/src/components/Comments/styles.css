@@ -3,6 +3,32 @@
     padding: 20px 20px 30px;
 }
 
+.commentsArea .commentsOff {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #717f91;
+    margin: 0 0 20px;
+    background: #f3f4f6;
+    border-radius: 6px;
+    padding: 2px 15px;
+}
+
+.commentsArea .commentsOff .icon {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #717f91;
+    margin-right: 10px;
+}
+
+.commentsArea .commentsOff .icon svg {
+    width: 25px;
+}
+
 .createComment form {
     display: flex;
 }

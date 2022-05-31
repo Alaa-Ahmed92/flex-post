@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../../helpers/auth-helper';
 import { connect } from 'react-redux';
-import { likePost, unlikePost } from '../../actions/postsActions';
+import { likePost, unlikePost, turnOffComments } from '../../actions/postsActions';
 import SeeMore from '../SeeMore/SeeMore';
 import Comments from '../Comments/Comments';
 import PropTypes from 'prop-types';
@@ -28,7 +28,7 @@ import EditPost from '../Modals/EditPost';
 
 const PostPreview = (props) => {
 
-    const { post, deletePost, likePost, unlikePost } = props;
+    const { post, deletePost, likePost, unlikePost, turnOffComments } = props;
     const [timestampString, setTimestampString] = useState("");
     const [commentArea, setcommentArea] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
@@ -120,7 +120,7 @@ const PostPreview = (props) => {
                             <DropdownButton title={<DotsHorizontalIcon />} className="dropdown-menu-lg-end" id="dropdown-menu-align-end">
                                 <Dropdown.Item eventKey="1"><LightBulbIcon /> <span>Pin Post</span></Dropdown.Item>
                                 <Dropdown.Item eventKey="2" onClick={showEditModal}><PencilAltIcon /> <span>Edit Post</span></Dropdown.Item>
-                                <Dropdown.Item eventKey="3"><BanIcon /> <span>Turn Off Comments</span></Dropdown.Item>
+                                <Dropdown.Item eventKey="3" onClick={() => turnOffComments(post._id, isAuthenticated().token)}><BanIcon /> <span>Turn {post.commentsOff ? 'On' : 'Off'} Commenting</span></Dropdown.Item>
                                 <Dropdown.Item eventKey="4" onClick={showModal}><TrashIcon /> <span>Delete Post</span></Dropdown.Item>
                             </DropdownButton>
                         </div>
@@ -184,4 +184,4 @@ PostPreview.propTypes = {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, { likePost, unlikePost })(PostPreview);
+export default connect(mapStateToProps, { likePost, unlikePost, turnOffComments })(PostPreview);

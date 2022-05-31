@@ -35,6 +35,10 @@ const postSchema = new mongoose.Schema({
     updatedAt: {
         type: Date
     },
+    commentsOff: {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = postSchema;
