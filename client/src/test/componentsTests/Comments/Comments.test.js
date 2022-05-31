@@ -3,23 +3,21 @@ import { shallow, mount } from 'enzyme';
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
 import Comments from '../../../components/Comments/Comments';
+import CreateComment from '../../../components/Comments/CreateComment';
+import { shallowToJson } from 'enzyme-to-json';
 
 const mockStore = configureMockStore();
 const store = mockStore({});
 
 describe('Comments Component', () => {
-    it('Test renders', () => {
-        const wrapper = shallow(<Provider store={store}><Comments /></Provider>);
-        expect(wrapper.exists()).toBe(true);
+    let wrapper;
+
+    it('renders without crashing', () => {
+        wrapper = shallow(<Provider store={store}><Comments /></Provider>);
     });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
-    it('Test renders', () => { });
+
+    it('matches snapshot', () => {
+        wrapper = shallow(<Provider store={store}><Comments /></Provider>);
+        expect(shallowToJson(wrapper)).toMatchSnapshot();
+    });
 });
