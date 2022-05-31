@@ -11,7 +11,8 @@ const {
     postPhoto,
     likePost,
     unLikePost,
-    addComment
+    addComment,
+    turnOffComments
 } = require('../controllers/postController');
 const { requireSignin } = require('../controllers/authController');
 const { userById } = require('../controllers/userController');
@@ -49,5 +50,8 @@ router.put("/posts/post/unlike", requireSignin, unLikePost);
 
 // Add Comment
 router.put("/posts/post/new/comment", requireSignin, addComment);
+
+// Turn Off Comments
+router.put("/posts/post/:postId", requireSignin, isPoster, turnOffComments);
 
 module.exports = router;

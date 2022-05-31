@@ -26,7 +26,7 @@ exports.postById = (req, res, next, id) => {
 // Get All Posts
 exports.getPosts = async (req, res) => {
     await Post.find({})
-        .select('_id photo body createdAt likes comments')
+        .select('_id photo body createdAt likes comments commentsOff')
         .populate('postedBy', '_id name')
         .populate('comments', 'text createdAt')
         .populate('comments.postedBy', '_id name')
@@ -191,4 +191,20 @@ exports.addComment = (req, res) => {
             }
             res.json(result);
         });
-}
+};
+
+// Turn Off Comments
+exports.turnOffComments = (req, res) => {
+    let post = req.post;
+    Post.findByIdAndUpdate(
+        req.body.postId,
+        { commentsOff: !post.commentsOff })
+        .exec((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                })
+            }
+            res.json(result);
+        });
+};

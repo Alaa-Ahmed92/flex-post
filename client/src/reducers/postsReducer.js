@@ -176,6 +176,32 @@ export const postsReducer = (state = initalState, action) => {
                 loading: false,
                 error: action.error
             }
+        // Fetch User Posts
+        case postsConstants.TURNOFF_COMMENTS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case postsConstants.TURNOFF_COMMENTS_SUCCESS:
+            return {
+                loading: false,
+                posts: state.posts.map(p => {
+                    if (p._id === action.post._id) {
+                        return {
+                            ...p,
+                            commentsOff: !action.post.commentsOff,
+                        }
+                    }
+                    return p;
+                }),
+                error: '',
+            }
+        case postsConstants.TURNOFF_COMMENTS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
         // Default Values
         default:
             return state;
