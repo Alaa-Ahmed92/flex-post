@@ -2,16 +2,72 @@
     position: relative;
 }
 
+.findUser .searchInput {
+    display: flex;
+    align-items: center;
+}
+
+.findUser .searchInput svg {
+    position: absolute;
+    width: 19px;
+    color: rgba(255, 255, 255, .7);
+    left: 10px;
+}
+
 .findUser input {
     width: 400px;
     border-radius: 6px;
     box-shadow: none;
     border: none;
+    height: 42px;
+    padding-left: 35px;
+    background: #028767;
+    transition: .3s ease-in-out;
+    color: rgba(255, 255, 255, .7) !important;
+}
+
+.findUser input:hover {
+    transition: .3s ease-in-out;
+    background: #017359;
 }
 
 .findUser input:focus {
     box-shadow: none;
     border: none;
+    background: #017359;
+    transition: .3s ease-in-out;
+}
+
+.findUser input::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: rgba(255, 255, 255, .7);
+}
+
+.findUser input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgba(255, 255, 255, .7);
+    opacity: 1;
+}
+
+.findUser input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgba(255, 255, 255, .7);
+    opacity: 1;
+}
+
+.findUser input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(255, 255, 255, .7);
+}
+
+.findUser input::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgba(255, 255, 255, .7);
+}
+
+.findUser input::placeholder {
+    /* Most modern browsers support this now. */
+    color: rgba(255, 255, 255, .7);
 }
 
 .findUser .userListDropdown {
@@ -66,28 +122,6 @@
     margin-right: 10px;
 }
 
-.findUser .userListDropdown ul li a span {color: #333;}
-
-.findUser .userListDropdown {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
-
-.findUser {}
+.findUser .userListDropdown ul li a span {
+    color: #333;
+}

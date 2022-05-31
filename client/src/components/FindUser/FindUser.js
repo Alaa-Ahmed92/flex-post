@@ -5,6 +5,9 @@ import { getUsers } from './../../actions/profileActions';
 import './FindUser.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {
+    SearchIcon
+} from '@heroicons/react/outline';
 
 const FindUser = (props) => {
     const { users, getUsers } = props;
@@ -61,14 +64,17 @@ const FindUser = (props) => {
 
     return (
         <div className='findUser' ref={wrapperRef}>
-            <input
-                type={'search'}
-                onChange={filter}
-                value={name}
-                className="form-control"
-                onFocus={onFocus}
-                placeholder="Search Users..."
-            />
+            <div className='searchInput'>
+                <SearchIcon />
+                <input
+                    type={'search'}
+                    onChange={filter}
+                    value={name}
+                    className="form-control"
+                    onFocus={onFocus}
+                    placeholder="Search Users..."
+                />
+            </div>
             <div className={`userListDropdown ${show ? 'show' : 'hide'}`}>
                 <ul>
                     {foundUsers && foundUsers.length > 0 ? (

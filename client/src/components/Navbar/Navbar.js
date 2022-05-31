@@ -34,14 +34,14 @@ const NavbarMenu = (props) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Link className='nav-link' to="/">Home</Link>
-                        {jwt ? (
-                            <NavDropdown title={<img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />}>
-                                <Link className='dropdown-item userProfile' to={`/user/${jwt.user && jwt.user._id}`}>
+                        {isAuthenticated() ? (
+                            <NavDropdown title={<img src={photoUrl} alt={isAuthenticated().user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />}>
+                                <Link className='dropdown-item userProfile' to={`/user/${isAuthenticated().user._id}`}>
                                     <div className='navImgInfo'>
-                                        <img src={photoUrl} alt={jwt.user && jwt.user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />
+                                        <img src={photoUrl} alt={isAuthenticated().user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />
                                     </div>
                                     <div className='navUserInfo'>
-                                        <h6>{jwt.user && jwt.user.name}</h6>
+                                        <h6>{isAuthenticated().user.name}</h6>
                                         <span>View Profile</span>
                                     </div>
                                 </Link>
@@ -65,6 +65,7 @@ NavbarMenu.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    login: state.login,
     user: getUserSelector(state)
 });
 
