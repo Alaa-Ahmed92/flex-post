@@ -24,7 +24,7 @@ const NavbarMenu = (props) => {
     const photoUrl = jwt && jwt.user && jwt.user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
 
     return (
-        <Navbar expand="lg">
+        <Navbar expand="lg" fixed="top">
             <Container>
                 <Navbar.Brand href="#home">
                     <img src={brandWhiteLogo} alt="Flux Post" />

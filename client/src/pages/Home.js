@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import FindPeople from '../components/FindPeople/FindPeople';
 import Posts from '../components/Posts/Posts';
+import Sider from '../components/Sider/Sider';
 import { isAuthenticated } from '../helpers/auth-helper';
+import { Row, Col } from 'antd';
 
 class Home extends Component {
 
@@ -14,17 +16,17 @@ class Home extends Component {
         return (
             <div className='home-page page'>
                 <div className='container'>
-                    <div className='row'>
-                        <div className='col-lg-2'>
-                            Test
-                        </div>
-                        <div className='col-lg-6'>
+                    <Row gutter={16}>
+                        <Col className="gutter-row" span={5}>
+                            <Sider />
+                        </Col>
+                        <Col className="gutter-row" span={12}>
                             <Posts />
-                        </div>
-                        <div className='col-lg-4'>
+                        </Col>
+                        <Col className="gutter-row" span={7}>
                             <FindPeople />
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </div>
             </div>
         )
