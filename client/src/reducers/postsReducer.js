@@ -19,6 +19,7 @@ export const postsReducer = (state = initalState, action) => {
                 ...state,
                 loading: false,
                 posts: action.posts.posts,
+                photosPosts: action.posts.posts.filter(p => p.photo),
                 error: '',
             }
         case postsConstants.FETCH_POSTS_FAILURE:

@@ -20,7 +20,6 @@ const Posts = (props) => {
             <CreatePost />
             <PostsList
                 posts={posts}
-                getPosts={getPosts}
                 deletePost={deletePost}
             />
         </div>

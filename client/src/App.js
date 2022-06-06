@@ -9,6 +9,7 @@ import EditProfile from './pages/EditProfile';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { history } from './helpers/history';
 import { PrivateRoute } from './helpers/auth-helper';
+import Photos from './pages/Photos';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <NavbarMenu />
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/photos' element={<Photos />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/user/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
