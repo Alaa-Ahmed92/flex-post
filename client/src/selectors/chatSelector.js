@@ -1,0 +1,1 @@
+export const getConversationsSelector = (state) => state.chat.conversations;

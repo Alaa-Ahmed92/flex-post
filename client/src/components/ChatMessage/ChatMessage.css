@@ -1,0 +1,37 @@
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .msgWrap {
+    margin-bottom: 10px;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .msgWrap span {
+    font-size: 13px;
+    color: #717f91;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .msgWrap .messageText {
+    background: #00B488;
+    border-radius: 6px;
+    padding: 5px 15px;
+    width: fit-content;
+    color: #fff;
+    margin-left: unset;
+    font-size: 16px;
+    margin-bottom: 0;
+    max-width: 70%;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .msgWrap.ownUser {
+    text-align: right;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .msgWrap.ownUser .messageText {
+    background: rgba(113, 127, 145, 0.2);
+    color: #333;
+    margin-left: auto;
+    text-align: left;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .msgWrap.ownUser {}
+
+.sendMsg {
+    margin-right: 10px;
+}

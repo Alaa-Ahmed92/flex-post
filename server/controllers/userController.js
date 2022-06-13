@@ -40,6 +40,16 @@ exports.getUsers = async (req, res) => {
 };
 
 // Get User
+exports.getUserrrrrrrr = async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId);
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json(err)
+    }
+};
+
+// Get User
 exports.getUser = async (req, res) => {
     req.profile.hashed_password = undefined;
     req.profile.salt = undefined;

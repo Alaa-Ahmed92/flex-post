@@ -8,7 +8,7 @@ import { getPostsSelector } from '../selectors/postsSelector';
 import CreatePost from './../components/Posts/CreatePost';
 import PostPreview from '../components/Posts/PostPreview';
 import './styles.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import DeleteUser from '../components/Modals/DeleteUser';
 import { message } from 'antd';
 import Followers from '../components/FollowGrid/Followers';
@@ -25,11 +25,13 @@ import {
     HomeIcon,
     ClockIcon
 } from '@heroicons/react/outline';
+import SendMessage from '../components/ChatMessage/SendMessage';
 
 
 const Profile = (props) => {
     const { following, user, getUser, deleteUser, postsByUser, userPosts, deletePost, followUser, unFollowUser } = props;
     const { userId } = useParams();
+    const navigate = useNavigate();
     // const photoUrl = user && user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
 
     useEffect(() => {
@@ -47,6 +49,27 @@ const Profile = (props) => {
         message.error(`Unfollowing ${user.name}`);
     }
 
+    async function sendMessage(e) {
+        e.preventDefault();
+        try {
+            const reso = await fetch(`${process.env.REACT_APP_API_URL}/conversation`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${isAuthenticated().token}`
+                },
+                body: JSON.stringify({
+                    senderId: isAuthenticated().user._id,
+                    receiverId: user._id
+                })
+            }).then(res => res.json())
+            navigate(`/chat`, { replace: true })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     function renderAuthUser() {
         if (user && isAuthenticated().user._id === user._id) {
             return (
@@ -61,9 +84,15 @@ const Profile = (props) => {
             return (
                 <div>
                     {following ? (
-                        <button type="button" className="btn btn-secondary" onClick={() => unFollowUserAction()}>Unfollow</button>
+                        <>
+                            <SendMessage sendMessage={sendMessage} />
+                            <button type="button" className="btn btn-secondary" onClick={() => unFollowUserAction()}>Unfollow</button>
+                        </>
                     ) : (
-                        <button type="button" className="btn btn-primary" onClick={() => followUserAction()}>Follow</button>
+                        <>
+                            <SendMessage sendMessage={sendMessage} />
+                            <button type="button" className="btn btn-primary" onClick={() => followUserAction()}>Follow</button>
+                        </>
                     )}
                 </div>
             )

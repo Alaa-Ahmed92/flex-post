@@ -12,7 +12,8 @@ const {
     removeFollowing,
     removeFollower,
     findPeople,
-    defaultPhoto
+    defaultPhoto,
+    getUserrrrrrrr
 } = require('../controllers/userController');
 const { requireSignin } = require('../controllers/authController');
 
@@ -23,6 +24,8 @@ router.get('/users/findPeople/:userId', requireSignin, findPeople);
 router.param("userId", userById);
 
 router.get("/user/:userId", requireSignin, getUser);
+
+router.get("/user/:userId", requireSignin, getUserrrrrrrr);
 
 router.get("/user/photo/:userId", userPhoto, defaultPhoto);
 
