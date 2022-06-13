@@ -72,13 +72,13 @@
 }
 
 .userInfo .userIntroActions .userAuth .dropdown button.dropdown-toggle svg {
-  width: 26px;
+    width: 26px;
 }
 
 .userInfo .userIntroActions .userAuth .dropdown.show button.dropdown-toggle,
 .userInfo .userIntroActions .userAuth button.dropdown-toggle:hover {
-  background-color: #e5e7eb;
-  color: #4b5563;
+    background-color: #e5e7eb;
+    color: #4b5563;
 }
 
 .userInfo .userIntroActions .userAuth .dropdown button.dropdown-toggle::after {
@@ -169,4 +169,189 @@
 
 .profileHeader .headUserInfo h2 span {
     font-weight: 300;
+}
+
+/* Chat Page */
+.chat.page {
+    height: 100vh;
+    padding-top: 75.88px;
+    padding-bottom: 0;
+    display: flex;
+    margin-top: 0;
+}
+
+.chat .chatWrapper {
+    display: flex;
+    height: 100%;
+}
+
+.chat .chatWrapper .conversations {
+    min-width: 350px;
+    max-width: 350px;
+    border-left: 1px solid rgba(113, 127, 145, 0.2);
+    border-right: 1px solid rgba(113, 127, 145, 0.2);
+}
+
+.chat .chatWrapper .conversations .convSearch {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.chat .chatWrapper .conversations .convSearch svg {
+    position: absolute;
+    width: 22px;
+    left: 20px;
+    color: #9ca3af;
+}
+
+.chat .chatWrapper .conversations .convSearch input {
+    width: 100%;
+    padding: 25px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(113, 127, 145, 0.2);
+    outline: none;
+    padding-left: 50px;
+    z-index: 1;
+}
+
+.chat .chatWrapper .conversations .convPeople {
+    overflow-y: auto;
+    height: calc(100% - 73px);
+}
+
+.chat .chatWrapper .messages .messagesHead {
+    display: flex;
+    align-items: center;
+    padding: 11px 20px;
+    border-bottom: 1px solid rgba(113, 127, 145, 0.2);
+}
+
+.chat .chatWrapper .messages .messagesHead .userPhoto {
+    margin-right: 10px;
+}
+
+.chat .chatWrapper .messages .messagesHead .userPhoto img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.chat .chatWrapper .messages .messagesHead .userInfo {
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    width: 100%;
+}
+
+.chat .chatWrapper .messages .messagesHead .userInfo h6 {
+    margin-bottom: 3px;
+}
+
+.chat .chatWrapper .messages .messagesHead .userInfo span {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+}
+
+.chat .chatWrapper .messages .messagesHead .userInfo span:before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+}
+
+.chat .chatWrapper .messages .messagesHead .userInfo span.online:before {
+    background: #00B488;
+}
+
+.chat .chatWrapper .messages .messagesHead .userInfo span.offline:before {
+    background: #fa3048;
+}
+
+.chat .chatWrapper .messages {
+    width: 100%;
+    border-right: 1px solid rgba(113, 127, 145, 0.2);
+    position: relative;
+}
+
+.chat .chatWrapper .messages .noCurrentChat {
+    position: absolute;
+    top: 44%;
+    /* left: 50%; */
+    font-size: 34px;
+    width: 100%;
+    text-align: center;
+}
+
+.chat .chatWrapper .messages .messageBody {
+    height: calc(100% - 148px);
+    position: relative;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent {
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView {
+    display: flex;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .msgsWrapper {
+    width: 100%;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .userInfo {
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    margin-right: 20px;
+}
+
+.chat .chatWrapper .messages .messageBody .messageContent .messageView .userInfo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.chat .chatWrapper .messages .messageBody .messageSend {
+    height: 73px;
+    border-top: 1px solid rgba(113, 127, 145, 0.2);
+    position: relative;
+}
+
+.chat .chatWrapper .messages .messageBody .messageSend textarea {
+    padding: 14.5px 20px;
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    resize: none;
+    outline: none;
+}
+
+.chat .chatWrapper .messages .messageBody .messageSend button {
+    position: absolute;
+    right: 30px;
+    top: -17px;
+    width: 40px;
+    height: 40px;
+    background: #00B488;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+}
+
+.chat .chatWrapper .messages .messageBody .messageSend button svg {
+    width: 26px;
+    transform: rotate(80deg);
 }

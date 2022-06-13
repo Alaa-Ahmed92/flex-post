@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
+import Chat from './pages/Chat';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { history } from './helpers/history';
 import { PrivateRoute } from './helpers/auth-helper';
@@ -19,9 +20,10 @@ class App extends Component {
           <NavbarMenu />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/photos' element={<Photos />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/photos' element={<PrivateRoute><Photos /></PrivateRoute>} />
+            <Route path='/chat' element={<PrivateRoute><Chat /></PrivateRoute>} />
             <Route path='/user/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
             <Route path='/user/edit/:userId' element={<PrivateRoute><EditProfile /></PrivateRoute>} />
           </Routes>

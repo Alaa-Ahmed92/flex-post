@@ -1,0 +1,56 @@
+.chat .chatWrapper .conversations .convPeople .convUser {
+    display: flex;
+    align-items: center;
+    padding: 11px 20px;
+    border-bottom: 1px solid rgba(113, 127, 145, 0.2);
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser.currentChatActive {
+    background: #fff;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userPhoto {
+    margin-right: 10px;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userPhoto img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userInfo {
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    width: 100%;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userInfo h6 {
+    margin-bottom: 3px;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userInfo span {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userInfo span:before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userInfo span.online:before {
+    background: #00B488;
+}
+
+.chat .chatWrapper .conversations .convPeople .convUser .userInfo span.offline:before {
+    background: #fa3048;
+}
