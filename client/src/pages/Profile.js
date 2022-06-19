@@ -37,7 +37,7 @@ const Profile = (props) => {
     useEffect(() => {
         getUser(userId, isAuthenticated().token);
         postsByUser(userId, isAuthenticated().token);
-    }, [userId, postsByUser]);
+    }, [userId, postsByUser, getUser]);
 
     function followUserAction() {
         followUser(isAuthenticated().user._id, isAuthenticated().token, user._id);

@@ -118,7 +118,7 @@ const PostPreview = (props) => {
                     {isAuthenticated().user._id === post.postedBy._id && (
                         <div className='postActions'>
                             <DropdownButton title={<DotsHorizontalIcon />} className="dropdown-menu-lg-end" id="dropdown-menu-align-end">
-                                <Dropdown.Item eventKey="1"><LightBulbIcon /> <span>Pin Post</span></Dropdown.Item>
+                                {/* <Dropdown.Item eventKey="1"><LightBulbIcon /> <span>Pin Post</span></Dropdown.Item> */}
                                 <Dropdown.Item eventKey="2" onClick={showEditModal}><PencilAltIcon /> <span>Edit Post</span></Dropdown.Item>
                                 <Dropdown.Item eventKey="3" onClick={() => turnOffComments(post._id, isAuthenticated().token)}><BanIcon /> <span>Turn {post.commentsOff ? 'On' : 'Off'} Commenting</span></Dropdown.Item>
                                 <Dropdown.Item eventKey="4" onClick={showModal}><TrashIcon /> <span>Delete Post</span></Dropdown.Item>

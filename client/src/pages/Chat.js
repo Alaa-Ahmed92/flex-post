@@ -47,7 +47,7 @@ const Chat = (props) => {
 
     useEffect(() => {
         getConversations(auth.user._id, auth.token);
-    }, [auth.user._id]);
+    }, [auth.user._id, getConversations, auth.token]);
 
     useEffect(() => {
         setDisabledMsg('disabled');
@@ -68,7 +68,7 @@ const Chat = (props) => {
             }
         }
         getMessages();
-    }, [currentChat]);
+    }, [currentChat, auth.token]);
 
     // 
     useEffect(() => {
@@ -89,7 +89,7 @@ const Chat = (props) => {
             }
         }
         getUser();
-    }, [currentChat]);
+    }, [currentChat, auth.token, auth.user._id]);
     // 
 
     function handleNewMsg(e) {
