@@ -1,0 +1,88 @@
+.formHeader {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.formHeader .formTitle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.formHeader img {
+    width: 100px;
+}
+
+.formHeader div {
+    font-size: 16px;
+}
+
+.formHeader div a {
+    color: #00B488;
+    text-decoration: underline;
+}
+
+.fieldsWrapper {
+    width: 400px;
+    margin: auto;
+    border-radius: 6px;
+    background: #fff;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+}
+
+.fieldsWrapper .formGroup {
+    display: flex;
+    align-items: center;
+    border-bottom: .5px solid rgba(113, 127, 145, 0.2);
+    padding: 15px 0;
+}
+
+.fieldsWrapper .formGroup:last-child {
+    border: none;
+}
+
+.fieldsWrapper .formGroup .form-label {
+    white-space: nowrap;
+    width: 80px;
+    margin: 0;
+    position: relative;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fieldsWrapper .formGroup .form-label:after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background: rgba(113, 127, 145, 0.2);
+    right: 0;
+}
+
+.fieldsWrapper .formGroup .form-control {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+.fieldsWrapper .formGroup .form-label svg {
+    width: 25px;
+}
+
+.formAction {
+    text-align: center;
+}
+
+.errorMsg {
+    width: 400px;
+    margin: auto;
+    margin-bottom: 10px;
+    color: red;
+    font-size: 16px;
+}

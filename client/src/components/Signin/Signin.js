@@ -4,6 +4,10 @@ import {
     Button,
     Alert
 } from 'react-bootstrap';
+import {
+    MailIcon,
+    LockClosedIcon
+} from '@heroicons/react/outline';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/loginActions';
 import { useNavigate } from 'react-router-dom';
@@ -34,29 +38,33 @@ const SigninForm = (props) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            {login && login.error && <Alert variant={'danger'}>{login.error}</Alert>}
-            {error && <Alert variant={'danger'}>{error}</Alert>}
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                    name="email"
-                    type="email"
-                    placeholder="Enter email"
-                    onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    onChange={handleChange} />
-            </Form.Group>
+            {login && login.error && <div className='errorMsg'>{login.error}</div>}
+            {error && <div className='errorMsg'>{error}</div>}
+            <div className='fieldsWrapper'>
+                <Form.Group className="formGroup" controlId="formBasicEmail">
+                    <Form.Label><MailIcon /></Form.Label>
+                    <Form.Control
+                        name="email"
+                        type="email"
+                        placeholder="Enter email"
+                        onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="formGroup" controlId="formBasicPassword">
+                    <Form.Label><LockClosedIcon /></Form.Label>
+                    <Form.Control
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        onChange={handleChange} />
+                </Form.Group>
+            </div>
             {login && login.requesting && <img alt='loading' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />}
             {login && login.user && <Alert variant={'success'}>{login.user.message}</Alert>}
-            <Button variant="primary" type="submit">
-                Login
-            </Button>
+            <div className='formAction'>
+                <Button variant="primary" type="submit">
+                    Login
+                </Button>
+            </div>
         </Form>
     )
 };

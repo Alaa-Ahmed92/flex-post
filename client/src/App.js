@@ -9,7 +9,7 @@ import EditProfile from './pages/EditProfile';
 import Chat from './pages/Chat';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { history } from './helpers/history';
-import { PrivateRoute } from './helpers/auth-helper';
+import { PrivateRoute, Toss } from './helpers/auth-helper';
 import Photos from './pages/Photos';
 
 class App extends Component {
@@ -20,8 +20,8 @@ class App extends Component {
           <NavbarMenu />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Toss><Login /></Toss>} />
+            <Route path='/register' element={<Toss><Register /></Toss>} />
             <Route path='/photos' element={<PrivateRoute><Photos /></PrivateRoute>} />
             <Route path='/chat' element={<PrivateRoute><Chat /></PrivateRoute>} />
             <Route path='/user/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />

@@ -23,7 +23,7 @@ const Conversation = (props) => {
             }
         }
         getUser();
-    }, [auth.user, conversation]);
+    }, [auth.user, conversation, auth.token]);
 
     // console.log(conversation)
 

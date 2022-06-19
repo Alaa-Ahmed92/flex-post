@@ -7,8 +7,7 @@ body {
 }
 
 .page {
-  margin-top: 10rem;
-  padding-bottom: 50px;
+  padding-top: 10rem;
 }
 
 .btn-check:active+.btn-primary:focus,

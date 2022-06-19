@@ -32,11 +32,11 @@ const NavbarMenu = (props) => {
     return (
         <Navbar expand="lg" fixed="top">
             <Container>
-                <Navbar.Brand href="#home">
+                <Link className='navbar-brand' to="/">
                     <img src={brandWhiteLogo} alt="Flux Post" />
-                </Navbar.Brand>
+                </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <FindUser />
+                {isAuthenticated() && <FindUser />}
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Link className='nav-link' to="/">Home</Link>
