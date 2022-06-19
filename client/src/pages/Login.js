@@ -16,7 +16,7 @@ const Login = (props) => {
         <div className='login page'>
             <div className='container'>
                 <div className='formHeader'>
-                    <img src={greenLogo} alt="Flux" />
+                    <img src={greenLogo} alt="FlexPost" />
                     <h3 className='formTitle'>Login into FlexPost</h3>
                     <div>No account yet? <Link to="/register">Sign up</Link>.</div>
                 </div>
