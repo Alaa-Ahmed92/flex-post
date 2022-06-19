@@ -33,15 +33,15 @@ const NavbarMenu = (props) => {
         <Navbar expand="lg" fixed="top">
             <Container>
                 <Link className='navbar-brand' to="/">
-                    <img src={brandWhiteLogo} alt="Flux Post" />
+                    <img src={brandWhiteLogo} alt="FlexPost" />
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 {isAuthenticated() && <FindUser />}
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
-                        <Link className='nav-link' to="/">Home</Link>
                         {isAuthenticated() ? (
                             <>
+                                <Link className='nav-link' to="/">Home</Link>
                                 <Link className='nav-link' to="/chat">Messenger</Link>
                                 <NavDropdown title={<img src={photoUrl} alt={isAuthenticated().user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />}>
                                     <Link className='dropdown-item userProfile' to={`/user/${isAuthenticated().user._id}`}>

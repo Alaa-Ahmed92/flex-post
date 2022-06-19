@@ -22,7 +22,7 @@ export function PrivateRoute({ children }) {
     return auth ? children : <Navigate to='/login' />
 };
 
-export function Toss({ children }) {
+export function AuthUserRoute({ children }) {
     let auth = isAuthenticated();
     return auth ? <Navigate to='/' /> : children;
 }

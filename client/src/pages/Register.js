@@ -9,7 +9,7 @@ class Register extends Component {
             <div className='register page'>
                 <div className='container'>
                     <div className='formHeader'>
-                        <img src={greenLogo} alt="Flux" />
+                        <img src={greenLogo} alt="FlexPost" />
                         <h3 className='formTitle'>Create a new account</h3>
                         <div>Already have an account? <Link to="/login">Sign in</Link>.</div>
                     </div>
