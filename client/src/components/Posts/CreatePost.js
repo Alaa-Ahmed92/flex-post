@@ -11,6 +11,7 @@ import {
 import {
     Form,
 } from 'react-bootstrap';
+import { createImg } from '../../Utils';
 
 const CreatePost = (props) => {
     const formEl = useRef(null);
@@ -64,7 +65,7 @@ const CreatePost = (props) => {
                     <Link to={`/user/${authUser.user && authUser.user._id}`}>
                         <img
                             src={`${process.env.REACT_APP_API_URL}/user/photo/${authUser.user && authUser.user._id}?${new Date().getTime()}`}
-                            onError={i => i.target.src = `/user/photo/defaultphoto`}
+                            onError={i => i.target.src = createImg(48, authUser.user.name)}
                         />
                     </Link>
                 </div>

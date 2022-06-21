@@ -29,6 +29,7 @@ export const userReducer = (state = {}, action) => {
             }
         case userConstants.FETCH_USER_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 data: action.user,
                 following: action.following
@@ -49,7 +50,6 @@ export const userReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
-                updated: true,
                 data: action.user
             }
         case userConstants.UPDATE_USER_FAILURE:

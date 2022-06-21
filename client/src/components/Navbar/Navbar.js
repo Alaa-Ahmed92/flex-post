@@ -17,12 +17,13 @@ import {
     LogoutIcon
 } from '@heroicons/react/outline';
 import FindUser from '../FindUser/FindUser';
+import { createImg } from '../../Utils';
 
 const NavbarMenu = (props) => {
     const { logoutUser } = props;
     const jwt = isAuthenticated();
     const navigate = useNavigate();
-    const photoUrl = jwt && jwt.user && jwt.user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
+    const photoUrl = `${process.env.REACT_APP_API_URL}/user/photo/${jwt?.user?._id}?${new Date().getTime()}`;
 
     function logoutUserAction() {
         navigate(`/login`, { replace: true })
@@ -43,10 +44,13 @@ const NavbarMenu = (props) => {
                             <>
                                 <Link className='nav-link' to="/">Home</Link>
                                 <Link className='nav-link' to="/chat">Messenger</Link>
-                                <NavDropdown title={<img src={photoUrl} alt={isAuthenticated().user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />}>
+                                <NavDropdown title={<img src={photoUrl} alt={isAuthenticated().user.name} onError={i => i.target.src = createImg(35, isAuthenticated().user.name)} />}>
                                     <Link className='dropdown-item userProfile' to={`/user/${isAuthenticated().user._id}`}>
                                         <div className='navImgInfo'>
-                                            <img src={photoUrl} alt={isAuthenticated().user.name} onError={i => i.target.src = `/user/photo/defaultphoto`} />
+                                            <img
+                                                src={photoUrl} alt={isAuthenticated().user.name}
+                                                onError={i => i.target.src = createImg(48, isAuthenticated().user.name)}
+                                            />
                                         </div>
                                         <div className='navUserInfo'>
                                             <h6>{isAuthenticated().user.name}</h6>

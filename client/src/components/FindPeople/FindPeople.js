@@ -6,6 +6,7 @@ import { isAuthenticated } from '../../helpers/auth-helper';
 import { message } from 'antd';
 import PropTypes from 'prop-types';
 import './FindPeople.css';
+import { createImg } from '../../Utils';
 
 const FindPeople = (props) => {
     const [peopleValues, setPeopleValues] = useState([]);
@@ -56,7 +57,7 @@ const FindPeople = (props) => {
                             <img
                                 className='img-fluid'
                                 src={`/user/photo/${user._id}`}
-                                onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                onError={i => i.target.src = createImg(40, user.name)}
                             />
                             <h5>{user.name}</h5>
                         </Link>

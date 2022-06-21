@@ -9,6 +9,7 @@ import {
     PaperAirplaneIcon
 } from '@heroicons/react/outline';
 import PropTypes from 'prop-types';
+import { createImg } from '../../Utils';
 
 const CreateComment = (props) => {
     const { addComment, post } = props;
@@ -45,7 +46,7 @@ const CreateComment = (props) => {
                     <Link to={`/user/${jwt.user._id}`}>
                         <img
                             src={`${process.env.REACT_APP_API_URL}/user/photo/${jwt.user._id}`}
-                            onError={i => i.target.src = `/user/photo/defaultphoto`}
+                            onError={i => i.target.src = createImg(35, jwt.user.name)}
                         />
                     </Link>
                 </div>

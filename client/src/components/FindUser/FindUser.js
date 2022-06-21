@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import {
     SearchIcon
 } from '@heroicons/react/outline';
+import { createImg } from '../../Utils';
 
 const FindUser = (props) => {
     const { users, getUsers } = props;
@@ -84,7 +85,7 @@ const FindUser = (props) => {
                                     <img
                                         className='img-fluid'
                                         src={`/user/photo/${user._id}`}
-                                        onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                        onError={i => i.target.src = createImg(30, user.name)}
                                     />
                                     <span className="userName">{user.name}</span>
                                 </Link>

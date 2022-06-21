@@ -11,6 +11,7 @@ import { getConversations } from '../actions/chatActions';
 import { isAuthenticated } from '../helpers/auth-helper';
 import { getConversationsSelector } from '../selectors/chatSelector';
 import { io } from "socket.io-client";
+import { createImg } from '../Utils';
 
 const Chat = (props) => {
     const auth = isAuthenticated();
@@ -169,7 +170,7 @@ const Chat = (props) => {
                                     <div className='userPhoto'>
                                         <img src={`${process.env.REACT_APP_API_URL}/user/photo/${currentChatUser?._id}?${new Date().getTime()}`}
                                             alt={currentChatUser?.name}
-                                            onError={i => i.target.src = `${process.env.REACT_APP_API_URL}/user/photo/defaultphoto`}
+                                            onError={i => i.target.src = createImg(50, currentChatUser?.name)}
                                         />
                                     </div>
                                     <div className='userInfo'>
