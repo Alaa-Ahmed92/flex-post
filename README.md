@@ -5,7 +5,7 @@
 ## [Live Demo](https://flexpost.herokuapp.com/)
 
 ## Functionality overview
-The example application is a social blogging or social media site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication.
+The example application is a social blogging or social media site (i.e. a Medium.com clone) called "FlexPost". It uses a custom API for all requests, including authentication.
 ##### General functionality:
 - Authenticate users via JWT (Login/Register pages + Logout button on navbar).
 - CRUD users (Register & Edit profile page + Delete profile button on Intro layout).
