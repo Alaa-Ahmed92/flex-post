@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Conversation.css';
+import { createImg } from '../../Utils';
 
 const Conversation = (props) => {
     const [user, setUser] = useState(null);
@@ -25,17 +26,12 @@ const Conversation = (props) => {
         getUser();
     }, [auth.user, conversation, auth.token]);
 
-    // console.log(conversation)
-
-    // if (props.messages.length === 0) return null
-
-
     return (
         <div className={`convUser ${currentChat === conversation._id ? 'currentChatActive' : ''}`}>
             <div className='userPhoto'>
                 <img src={`${process.env.REACT_APP_API_URL}/user/photo/${user?._id}?${new Date().getTime()}`}
                     alt={user?.name}
-                    onError={i => i.target.src = `${process.env.REACT_APP_API_URL}/user/photo/defaultphoto`}
+                    onError={i => i.target.src = createImg(50, user?.name)}
                 />
             </div>
             <div className='userInfo'>

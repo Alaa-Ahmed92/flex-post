@@ -15,7 +15,7 @@ import './EditForm.css';
 
 const EditForm = (props) => {
     const [newUserInfo, setNewUserInfo] = useState('');
-    const { getUser, updateUser, user, updated, error } = props;
+    const { getUser, updateUser, user, error } = props;
     const { userId } = useParams();
     const navigate = useNavigate();
     const [validError, setValidError] = useState('');
@@ -61,6 +61,7 @@ const EditForm = (props) => {
 
         if (isValid()) {
             updateUser(userId, isAuthenticated().token, userData);
+            navigate(`/user/${userId}`, { replace: true })
         }
     };
 
@@ -88,8 +89,6 @@ const EditForm = (props) => {
             return true;
         }
     }
-
-    if (updated) navigate(`/user/${userId}`, { replace: true });
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -212,7 +211,6 @@ EditForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    updated: state.user.updated,
     error: state.user.error,
     user: getUserSelector(state)
 })

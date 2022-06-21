@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import './styles.css';
+import { createImg } from '../../Utils';
 
 const CommentView = (props) => {
     const { comment } = props;
@@ -28,7 +29,7 @@ const CommentView = (props) => {
                     <Link to={`/user/${comment.postedBy._id}`}>
                         <img
                             src={`${process.env.REACT_APP_API_URL}/user/photo/${comment.postedBy._id}`}
-                            onError={i => i.target.src = `/user/photo/defaultphoto`}
+                            onError={i => i.target.src = createImg(35, comment.postedBy.name)}
                             alt={comment.postedBy.name}
                         />
                     </Link>

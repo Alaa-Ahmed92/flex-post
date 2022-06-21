@@ -25,6 +25,7 @@ import {
 } from '@heroicons/react/outline';
 import DeletePost from '../Modals/DeletePost';
 import EditPost from '../Modals/EditPost';
+import { createImg } from '../../Utils';
 
 const PostPreview = (props) => {
 
@@ -33,7 +34,7 @@ const PostPreview = (props) => {
     const [commentArea, setcommentArea] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [editPostModal, setEditPostModal] = useState(false);
-    const photoUrl = post && post.postedBy._id ? `${process.env.REACT_APP_API_URL}/user/photo/${post.postedBy._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
+    const photoUrl = post && post.postedBy._id && `${process.env.REACT_APP_API_URL}/user/photo/${post.postedBy._id}?${new Date().getTime()}`;
     const [values, setValues] = useState({
         like: ''
     })
@@ -105,7 +106,7 @@ const PostPreview = (props) => {
                                 <img
                                     className='img-fluid'
                                     src={photoUrl}
-                                    onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                    onError={i => i.target.src = createImg(48, post.postedBy.name)}
                                     alt={post.postedBy.name}
                                 />
                             </Link>

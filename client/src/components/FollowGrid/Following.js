@@ -2,6 +2,7 @@ import React from 'react';
 import './FollowGrid.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { createImg } from '../../Utils';
 
 const Following = (props) => {
     const { following } = props;
@@ -21,7 +22,7 @@ const Following = (props) => {
                                 <img
                                     className='img-fluid'
                                     src={`${process.env.REACT_APP_API_URL}/user/photo/${profile._id}`}
-                                    onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                    onError={i => i.target.src = createImg(110, profile.name)}
                                     alt={profile.name}
                                 />
                                 <span>{profile.name}</span>

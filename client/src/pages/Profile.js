@@ -26,13 +26,13 @@ import {
     ClockIcon
 } from '@heroicons/react/outline';
 import SendMessage from '../components/ChatMessage/SendMessage';
+import { createImg } from '../Utils';
 
 
 const Profile = (props) => {
     const { following, user, getUser, deleteUser, postsByUser, userPosts, deletePost, followUser, unFollowUser } = props;
     const { userId } = useParams();
     const navigate = useNavigate();
-    // const photoUrl = user && user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}` : `/user/photo/defaultphoto`;
 
     useEffect(() => {
         getUser(userId, isAuthenticated().token);
@@ -107,7 +107,7 @@ const Profile = (props) => {
                             <div className='headImg'>
                                 <img src={user && user._id && `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}`}
                                     alt={user && user.name}
-                                    onError={i => i.target.src = `/user/photo/defaultphoto`}
+                                    onError={i => i.target.src = createImg(168, user.name)}
                                 />
                             </div>
                             <div className='headUserInfo'>
