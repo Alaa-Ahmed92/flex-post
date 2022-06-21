@@ -13,7 +13,6 @@ The example application is a social blogging or social media site (i.e. a Medium
 - Create Post with image.
 - CR** Comments on articles (no updating and deleting required).
 - Turn on / off comments on user's post.
-- GET and display paginated lists of articles.
 - Link & Unlike posts.
 - Follow & Unfollow other users.
 - **Realtime Chat**.
